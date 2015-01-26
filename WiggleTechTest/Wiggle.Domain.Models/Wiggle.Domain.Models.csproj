@@ -43,13 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseDto.cs" />
-    <Compile Include="Common\RequestDto.cs" />
-    <Compile Include="Common\ResponseDto.cs" />
-    <Compile Include="Products\GirftVoucherDto.cs" />
-    <Compile Include="Products\OfferVoucher.cs" />
+    <Compile Include="Products\GirftVoucherDto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Products\OfferVoucher.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Products\OfferVoucherType.cs" />
-    <Compile Include="Products\ProductCategoryEnum.cs" />
-    <Compile Include="ShoppingBasket\OrderResultDto.cs" />
+    <Compile Include="Products\ProductCategoryEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ShoppingBasket\ShoppingBasket.cs" />
     <Compile Include="Products\ProductDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

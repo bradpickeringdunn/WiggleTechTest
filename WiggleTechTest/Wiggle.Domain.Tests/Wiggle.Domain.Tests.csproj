@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Backbone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\Backbone.dll</HintPath>
-    </Reference>
     <Reference Include="FakeItEasy">
       <HintPath>..\packages\FakeItEasy.1.25.1\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
@@ -58,9 +54,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoppingBasket\ShoppingBasketCheckoutTestFixture.cs" />
+    <Compile Include="ShoppingBasket\ShoppingBasketProducts.cs" />
+    <Compile Include="Scenario.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Backbone\Backbone\Backbone.csproj">
+      <Project>{d04357b6-63ac-4d8f-8af1-c985f6264569}</Project>
+      <Name>Backbone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Domain.Models.csproj">
       <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
       <Name>Wiggle.Domain.Models</Name>

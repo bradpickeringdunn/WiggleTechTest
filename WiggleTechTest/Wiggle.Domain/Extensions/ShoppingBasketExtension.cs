@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Wiggle.Domain.Models.ShoppingBasket;
 using Wiggle.Domain.PurchaseRules;
 
-namespace Wiggle.Domain.Extensions
+namespace Wiggle.Domain
 {
     public static class ShoppingBasketExtension
     {
@@ -18,21 +18,24 @@ namespace Wiggle.Domain.Extensions
             {
                 foreach (var product in basket.Products)
                 {
-                    basket.Total += product.Price;
+                    basket.Total += Math.Round(product.Price, 2);
                 }
-            }
 
-            if (basket.OfferVoucher.IsNotNull())
-            {
-                basket = new PurchaseRules.OfferVoucherRules().Validate(basket);
-            }
-
-            if (basket.GiftVouchers.Any())
-            {
-                foreach (var voucher in basket.GiftVouchers)
+                if (basket.GiftVouchers.Any())
                 {
-                    basket.Total -= voucher.Value;
+                    basket.GiftVouchers.ForEach(voucher =>
+                    {
+                        //TODO This will result in negative total.  Chekc with client for extra logic.
+                        basket.Total -= voucher.Value;
+                    });
                 }
+
+                if (basket.AppliedDiscount.HasValue)
+                {
+                    basket.Total -= basket.AppliedDiscount.Value;
+                }
+
+                basket.Total = Math.Round(basket.Total, 2);
             }
         }
     }

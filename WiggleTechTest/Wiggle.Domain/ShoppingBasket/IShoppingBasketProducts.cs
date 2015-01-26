@@ -14,9 +14,9 @@ namespace Wiggle.Domain.ShoppingBasket
 
         ShoppingBasketDto RemoveProduct(ShoppingBasketDto basket, ProductDto product);
 
-        ShoppingBasketDto ApplyGiftVoucer(ShoppingBasketDto basket, GirftVoucherDto giftVoucher);
+        ShoppingBasketDto ApplyGiftVoucer(ShoppingBasketDto basket, GiftVoucherDto giftVoucher);
 
-        ShoppingBasketDto RemoveGiftVoucher(ShoppingBasketDto basket, GirftVoucherDto giftVoucher);
+        ShoppingBasketDto RemoveGiftVoucher(ShoppingBasketDto basket, GiftVoucherDto giftVoucher);
 
         ShoppingBasketDto AddOfferVoucher(ShoppingBasketDto basket, OfferVoucherDto offerVoucher);
 

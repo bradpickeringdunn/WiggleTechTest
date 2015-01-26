@@ -7,6 +7,7 @@ using System.Text;
 using Wiggle.Domain.Models.Common;
 using Wiggle.Domain.Models.Products;
 using Wiggle.Domain.Models.ShoppingBasket;
+using Wiggle.Domain.ShoppingBasket;
 using Model = Wiggle.Domain.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules
@@ -21,7 +22,7 @@ namespace Wiggle.Domain.PurchaseRules
 
             if (!Basket.Notifications.HasErrors)
             {
-                CheckOfferVoucherThreshold();
+                new Common.OfferVoucherThreasholdRule().Validate(basket);
             }
 
             if (!Basket.Notifications.HasErrors)
@@ -30,20 +31,7 @@ namespace Wiggle.Domain.PurchaseRules
             }
             
             return this.Basket;
-        }
-                
-        private ShoppingBasketDto CheckOfferVoucherThreshold()
-        {
-            if (Basket.Total < Basket.OfferVoucher.Threashold)
-            {
-                Basket.Notifications.Add(
-                   new Notification(
-                       new Error("You have not reached the spend threshold for voucher YYY-YYY. Spend another £25.01 to receive £5.00 discount from your basket total."))
-                    );
-            }
-
-            return Basket;
-        }
+        }                
 
         private void OfferIsApplicableToAProduct()
         {
@@ -60,16 +48,8 @@ namespace Wiggle.Domain.PurchaseRules
 
             if (product.IsNotNull())
             {
-                double discount = 0;
-
-                if (product.Price < this.Basket.OfferVoucher.Value)
-                {
-                    discount = Basket.OfferVoucher.Value - product.Price;
-                    discount = Math.Round(discount, 2);
-                }
-
+                double discount = DiscountCalculator.Calculate(product.Price, Basket.OfferVoucher.Value);
                 product.Price -= discount;
-                Basket.Total -= discount;
             }
         }
 

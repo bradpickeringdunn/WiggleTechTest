@@ -41,12 +41,13 @@
   <ItemGroup>
     <Compile Include="Extensions\ShoppingBasketExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseRules\Common\OfferVoucherThreasholdRule.cs" />
+    <Compile Include="PurchaseRules\IOfferVoucherRules.cs" />
     <Compile Include="PurchaseRules\OfferVoucherRules.cs" />
     <Compile Include="PurchaseRules\ShoppingBasket\ShoppingBasketContentsOfferVoucherRules.cs" />
-    <Compile Include="ShoppingBasket\IShoppingBasketCheckOut.cs" />
     <Compile Include="ShoppingBasket\IShoppingBasketProducts.cs" />
-    <Compile Include="ShoppingBasket\ShoppingBasketCheckOut.cs" />
     <Compile Include="PurchaseRules\Products\ProductOfferVoucherRules.cs" />
+    <Compile Include="ShoppingBasket\DiscountCalculator.cs" />
     <Compile Include="ShoppingBasket\ShoppingBasketProducts.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ using Wiggle.Domain.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules
 {
-    public class OfferVoucherRules
+    public class OfferVoucherRules : IOfferVoucherRules
     {
         private ShoppingBasketDto Basket { get; set; }
 
