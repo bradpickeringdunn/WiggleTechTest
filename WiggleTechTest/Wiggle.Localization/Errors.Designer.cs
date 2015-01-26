@@ -61,11 +61,20 @@ namespace Wiggle.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no products in your basket applicable to voucher Voucher {0}.
+        ///   Looks up a localized string similar to There are no products in your basket applicable to voucher Voucher {0}..
         /// </summary>
         internal static string Errors_NoProductMatchesVoucher {
             get {
                 return ResourceManager.GetString("Errors_NoProductMatchesVoucher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not reached the spend threshold for voucher {0}. Spend another £{1} to receive £{2} discount from your basket total..
+        /// </summary>
+        internal static string Errors_TotalNotMatchThreashold {
+            get {
+                return ResourceManager.GetString("Errors_TotalNotMatchThreashold", resourceCulture);
             }
         }
     }

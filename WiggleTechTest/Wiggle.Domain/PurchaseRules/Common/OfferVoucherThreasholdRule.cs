@@ -3,23 +3,23 @@ using Backbone.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Wiggle.Domain.Models.Products;
 using Wiggle.Domain.Models.ShoppingBasket;
+using Wiggle.Localization;
 
 namespace Wiggle.Domain.PurchaseRules.Common
 {
-    /// <summary>
-    /// Rules governing the meeting of Offer Voucher Threasholds
-    /// </summary>
-    public class OfferVoucherThreasholdRule
+    //TODO: move to database
+    internal class OfferVoucherThreasholdRule : IOfferVoucherThreasholdRule
     {
-        //TODO move to database / config
         private IEnumerable<ProductCategoryEnum> ExcludedProducts = new List<ProductCategoryEnum>()
         {
             ProductCategoryEnum.GiftVoucher
         };
 
-        private ShoppingBasketDto Basket {get;set;}
+        private ShoppingBasketDto Basket { get; set; }
 
         /// <summary>
         /// Determins f any products should not be evaluated in the conditon and executes the evaluation of basket toatl and offer threashold.
@@ -43,9 +43,14 @@ namespace Wiggle.Domain.PurchaseRules.Common
 
             if (tempBasket.Total < Basket.OfferVoucher.Threashold)
             {
+                double difference = Basket.OfferVoucher.Threashold - tempBasket.Total;
+                double extraNeeded = 0.01 + difference;
+
+
                 Basket.Notifications.Add(
-                   new Notification(
- new Error("You have not reached the spend threshold for voucher YYY-YYY. Spend another £{0} to receive £{1} discount from your basket total.".FormatLiteralArguments(0, 25))));
+                    new Notification(
+                   new ContentString().GetError("Errors_TotalNotMatchThreashold")
+                       .FormatLiteralArguments(Basket.OfferVoucher.Code, Math.Round(extraNeeded, 2), Basket.OfferVoucher.Value)));
             }
         }
 
@@ -53,8 +58,9 @@ namespace Wiggle.Domain.PurchaseRules.Common
         {
             var productList = new List<ProductDto>();
             productList.AddRange(this.Basket.Products);
-            
-            var tempBasket = new ShoppingBasketDto(){
+
+            var tempBasket = new ShoppingBasketDto()
+            {
                 Products = productList
             };
 
@@ -73,5 +79,6 @@ namespace Wiggle.Domain.PurchaseRules.Common
 
             return tempBasket;
         }
+
     }
 }

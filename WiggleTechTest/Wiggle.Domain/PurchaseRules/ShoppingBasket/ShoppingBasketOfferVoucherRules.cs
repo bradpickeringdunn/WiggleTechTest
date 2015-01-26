@@ -1,11 +1,12 @@
 ﻿using Wiggle.Domain.Models.ShoppingBasket;
+using Wiggle.Domain.PurchaseRules.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules.ShoppingBaskets
 {
     /// <summary>
     /// Contails rules associated with offer vouchers for the discounting of a baskets contense.
     /// </summary>
-    public class ShoppingBasketOfferVoucherRules
+    internal class ShoppingBasketOfferVoucherRules : IShoppingBasketOfferVoucherRules
     {
         private ShoppingBasketDto Basket {get;set;}
 

@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Errors_NoProductMatchesVoucher" xml:space="preserve">
-    <value>There are no products in your basket applicable to voucher Voucher {0}</value>
+    <value>There are no products in your basket applicable to voucher Voucher {0}.</value>
+  </data>
+  <data name="Errors_TotalNotMatchThreashold" xml:space="preserve">
+    <value>You have not reached the spend threshold for voucher {0}. Spend another £{1} to receive £{2} discount from your basket total.</value>
   </data>
 </root>

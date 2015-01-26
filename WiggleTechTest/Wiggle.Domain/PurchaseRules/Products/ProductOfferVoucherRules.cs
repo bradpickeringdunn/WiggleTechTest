@@ -3,13 +3,16 @@ using System;
 using System.Linq;
 using Wiggle.Domain.Models.ShoppingBasket;
 using Wiggle.Domain.ShoppingBasket;
+using Wiggle.Domain.PurchaseRules.Products;
+using Wiggle.Domain.PurchaseRules.Common;
+using Wiggle.Localization;
 
 namespace Wiggle.Domain.PurchaseRules
 {
     /// <summary>
     /// Continas all rules related to the purchase of a product.
     /// </summary>
-    public class ProductPurchaeRules
+    public class ProductPurchaeRules : IProductPurchaeRules
     {
         private ShoppingBasketDto Basket { get; set; }
                      
@@ -22,7 +25,7 @@ namespace Wiggle.Domain.PurchaseRules
 
             if (!Basket.Notifications.HasErrors)
             {
-                new Common.OfferVoucherThreasholdRule().Validate(basket);
+                new OfferVoucherThreasholdRule().Validate(basket);
             }
 
             if (!Basket.Notifications.HasErrors)
@@ -41,8 +44,7 @@ namespace Wiggle.Domain.PurchaseRules
             {
                 Basket.Notifications.Add(
                     new Notification(
-                        new Error("There are no products in your basket applicable to voucher Voucher YYY-YYY ")
-                        )
+                        new ContentString().GetError("Errors_NoProductMatchesVoucher").FormatLiteralArguments(Basket.OfferVoucher.Code))
                     );
             }
 

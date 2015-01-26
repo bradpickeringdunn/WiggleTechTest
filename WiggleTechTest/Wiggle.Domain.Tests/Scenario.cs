@@ -5,6 +5,8 @@ using Wiggle.Domain.ShoppingBasket;
 using Wiggle.Domain.Models.Products;
 using Wiggle.Domain.Models.ShoppingBasket;
 using System.Collections.Generic;
+using System.Linq;
+using Wiggle.Localization;
 
 namespace Wiggle.Domain.Tests
 {
@@ -13,12 +15,14 @@ namespace Wiggle.Domain.Tests
     {
         IOfferVoucherRules OfferRules;
         IShoppingBasketProducts ShoppingBasketProducts;
+        ContentString ContentString;
 
         [TestInitialize]
         public void Initialize()
         {
             OfferRules = new OfferVoucherRules();
             ShoppingBasketProducts = new ShoppingBasketProducts(OfferRules);
+            ContentString = new ContentString();
         }
 
         [TestMethod]
@@ -86,7 +90,11 @@ namespace Wiggle.Domain.Tests
             basket = OfferRules.Validate(basket);
             basket.CalculateTotal();
 
+            var expectedErrorMessage = ContentString.GetError("Errors_NoProductMatchesVoucher").FormatLiteralArguments(basket.OfferVoucher.Code);
+
             Assert.IsTrue(basket.Notifications.HasErrors);
+            Assert.AreEqual(basket.Notifications.Notifications.First().Error.ErrorMessage, expectedErrorMessage);
+                
         }
 
         [TestMethod]
@@ -168,7 +176,7 @@ namespace Wiggle.Domain.Tests
             var firstProduct = new ProductDto()
             {
                 Name = "Hat",
-                Price = 26,
+                Price = 25,
                 Category = ProductCategoryEnum.Clothing
             };
 
@@ -192,6 +200,11 @@ namespace Wiggle.Domain.Tests
 
             basket = OfferRules.Validate(basket);
             basket.CalculateTotal();
+
+            var expectedError = ContentString.GetError("Errors_TotalNotMatchThreashold").FormatLiteralArguments(basket.OfferVoucher.Code, 25.01, 5);
+
+            Assert.IsTrue(basket.Notifications.HasErrors);
+            Assert.AreEqual(basket.Notifications.Notifications.First().Error.ErrorMessage, expectedError);
         }
     }
 }
