@@ -6,7 +6,7 @@ using Wiggle.Domain.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules.Products
 {
-    public interface IProductPurchaeRules
+    internal interface IProductPurchaeRules
     {
         ShoppingBasketDto ApplyOfferVoucher(ShoppingBasketDto basket);
     }

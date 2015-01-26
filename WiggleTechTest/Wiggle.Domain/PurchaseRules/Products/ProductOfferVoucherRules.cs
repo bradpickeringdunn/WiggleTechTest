@@ -12,7 +12,7 @@ namespace Wiggle.Domain.PurchaseRules
     /// <summary>
     /// Continas all rules related to the purchase of a product.
     /// </summary>
-    public class ProductPurchaeRules : IProductPurchaeRules
+    internal class ProductPurchaeRules : IProductPurchaeRules
     {
         private ShoppingBasketDto Basket { get; set; }
                      
