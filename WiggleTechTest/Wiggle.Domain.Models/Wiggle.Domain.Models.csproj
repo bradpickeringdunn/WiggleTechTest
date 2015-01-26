@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Backbone">
+      <HintPath>..\Libraries\Backbone.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,8 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDto.cs" />
-    <Compile Include="Products\ProductBasket.cs" />
+    <Compile Include="Common\BaseDto.cs" />
+    <Compile Include="Common\RequestDto.cs" />
+    <Compile Include="Common\ResponseDto.cs" />
+    <Compile Include="Products\GirftVoucherDto.cs" />
+    <Compile Include="Products\OfferVoucher.cs" />
+    <Compile Include="Products\OfferVoucherType.cs" />
+    <Compile Include="Products\ProductCategoryEnum.cs" />
+    <Compile Include="ShoppingBasket\OrderResultDto.cs" />
+    <Compile Include="ShoppingBasket\ShoppingBasket.cs" />
     <Compile Include="Products\ProductDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

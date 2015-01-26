@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Wiggle.Domain.Models.Products
 {
-    public class ProductBasket : BaseDto
+    public enum OfferVoucherType
     {
-        public IEnumerable<ProductDto> Products { get; set; }
-
-        public double Total { get; }
+        ShoppingBasket,
+        Product
     }
 }

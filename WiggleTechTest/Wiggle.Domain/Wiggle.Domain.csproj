@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Backbone">
-      <HintPath>..\Libraries\Backbone.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,9 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ShoppingBasketExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseRules\OfferVoucherRules.cs" />
+    <Compile Include="PurchaseRules\ShoppingBasket\ShoppingBasketContentsOfferVoucherRules.cs" />
+    <Compile Include="ShoppingBasket\IShoppingBasketCheckOut.cs" />
+    <Compile Include="ShoppingBasket\IShoppingBasketProducts.cs" />
+    <Compile Include="ShoppingBasket\ShoppingBasketCheckOut.cs" />
+    <Compile Include="PurchaseRules\Products\ProductOfferVoucherRules.cs" />
+    <Compile Include="ShoppingBasket\ShoppingBasketProducts.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Backbone\Backbone\Backbone.csproj">
+      <Project>{d04357b6-63ac-4d8f-8af1-c985f6264569}</Project>
+      <Name>Backbone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Domain.Models.csproj">
       <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
       <Name>Wiggle.Domain.Models</Name>
@@ -54,9 +63,7 @@
       <Name>Wiggle.Localization</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PurchaseRules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

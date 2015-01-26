@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wiggle.Domain.Models
+namespace Wiggle.Domain.Models.Common
 {
     public class BaseDto
     {
