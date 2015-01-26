@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Extensions\ShoppingBasketExtensionTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingBasket\ShoppingBasketProducts.cs" />
     <Compile Include="Scenario.cs" />
