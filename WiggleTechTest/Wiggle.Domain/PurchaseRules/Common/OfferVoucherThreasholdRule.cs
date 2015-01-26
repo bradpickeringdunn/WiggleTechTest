@@ -3,14 +3,15 @@ using Backbone.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wiggle.Domain.Models.Products;
 using Wiggle.Domain.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules.Common
 {
-    class OfferVoucherThreasholdRule
+    /// <summary>
+    /// Rules governing the meeting of Offer Voucher Threasholds
+    /// </summary>
+    public class OfferVoucherThreasholdRule
     {
         //TODO move to database / config
         private IEnumerable<ProductCategoryEnum> ExcludedProducts = new List<ProductCategoryEnum>()
@@ -20,7 +21,10 @@ namespace Wiggle.Domain.PurchaseRules.Common
 
         private ShoppingBasketDto Basket {get;set;}
 
-        internal ShoppingBasketDto Validate(ShoppingBasketDto basket)
+        /// <summary>
+        /// Determins f any products should not be evaluated in the conditon and executes the evaluation of basket toatl and offer threashold.
+        /// </summary>
+        public ShoppingBasketDto Validate(ShoppingBasketDto basket)
         {
             Guardian.ArgumentNotNull(basket, "basket");
 

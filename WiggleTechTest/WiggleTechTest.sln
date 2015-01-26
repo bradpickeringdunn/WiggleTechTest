@@ -9,13 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Localization", "Wigg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Domain.Tests", "Wiggle.Domain.Tests\Wiggle.Domain.Tests.csproj", "{B67F8449-DC98-48D8-AE8C-9BC862B29CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Repository", "Wiggle.Repository\Wiggle.Repository.csproj", "{CCF9928A-4BF8-4BE1-BC80-A9D2202A8AF7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Web.Api", "Wiggle.Web\Wiggle.Web.Api.csproj", "{4E35CD9F-313E-48A4-94E2-EEADFD710BE2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backbone", "..\..\Backbone\Backbone\Backbone.csproj", "{D04357B6-63AC-4D8F-8AF1-C985F6264569}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Web.Api.Tests", "Wiggle.Web.Api.Tests\Wiggle.Web.Api.Tests.csproj", "{983E9991-163D-48AE-980B-0C542B4B692B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,22 +33,10 @@ Global
 		{B67F8449-DC98-48D8-AE8C-9BC862B29CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B67F8449-DC98-48D8-AE8C-9BC862B29CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B67F8449-DC98-48D8-AE8C-9BC862B29CD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCF9928A-4BF8-4BE1-BC80-A9D2202A8AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCF9928A-4BF8-4BE1-BC80-A9D2202A8AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCF9928A-4BF8-4BE1-BC80-A9D2202A8AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCF9928A-4BF8-4BE1-BC80-A9D2202A8AF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E35CD9F-313E-48A4-94E2-EEADFD710BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E35CD9F-313E-48A4-94E2-EEADFD710BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E35CD9F-313E-48A4-94E2-EEADFD710BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E35CD9F-313E-48A4-94E2-EEADFD710BE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D04357B6-63AC-4D8F-8AF1-C985F6264569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D04357B6-63AC-4D8F-8AF1-C985F6264569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D04357B6-63AC-4D8F-8AF1-C985F6264569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D04357B6-63AC-4D8F-8AF1-C985F6264569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{983E9991-163D-48AE-980B-0C542B4B692B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{983E9991-163D-48AE-980B-0C542B4B692B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{983E9991-163D-48AE-980B-0C542B4B692B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{983E9991-163D-48AE-980B-0C542B4B692B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

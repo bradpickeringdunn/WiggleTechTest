@@ -7,8 +7,14 @@ using Wiggle.Domain.Models.Products;
 
 namespace Wiggle.Domain.ShoppingBasket
 {
+    /// <summary>
+    /// Apply caluclations for discounts
+    /// </summary>
     public static class DiscountCalculator
     {
+        /// <summary>
+        /// Return the discount ammount based on the cost of a product.
+        /// </summary>
         public static double Calculate(double cost, double discountValue)
         {
             double discountAmmount = 0;

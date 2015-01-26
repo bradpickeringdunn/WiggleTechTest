@@ -1,21 +1,21 @@
 ﻿using Backbone.ErrorHandling;
-using Backbone.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Wiggle.Domain.Models.Common;
-using Wiggle.Domain.Models.Products;
 using Wiggle.Domain.Models.ShoppingBasket;
 using Wiggle.Domain.ShoppingBasket;
-using Model = Wiggle.Domain.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules
 {
+    /// <summary>
+    /// Continas all rules related to the purchase of a product.
+    /// </summary>
     public class ProductPurchaeRules
     {
         private ShoppingBasketDto Basket { get; set; }
-                        
+                     
+        /// <summary>
+        /// Run through the rules nessesary for the aplication of the specified voucher.  If no errors voucher is applied.
+        /// </summary>
         public ShoppingBasketDto ApplyOfferVoucher(ShoppingBasketDto basket)
         {
             this.Basket = basket;

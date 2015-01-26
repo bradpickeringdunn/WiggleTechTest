@@ -9,15 +9,24 @@ using Wiggle.Domain.PurchaseRules;
 
 namespace Wiggle.Domain.ShoppingBasket
 {
+    /// <summary>
+    /// Governs the actions for product in a shopping basket
+    /// </summary>
     public class ShoppingBasketProducts : IShoppingBasketProducts
     {
         private IOfferVoucherRules OfferVoucherRules{get;set;}
 
+        /// <summary>
+        /// Constructo for passing dependacy
+        /// </summary>
         public ShoppingBasketProducts(IOfferVoucherRules offerVoucherRules)
         {
             this.OfferVoucherRules = offerVoucherRules;
         }
 
+        /// <summary>
+        /// Add a product to a basket
+        /// </summary>
         public ShoppingBasketDto AddProduct(ShoppingBasketDto basket, ProductDto product)
         {
             basket.Products.Add(product);
@@ -32,39 +41,5 @@ namespace Wiggle.Domain.ShoppingBasket
             return basket;
         }
 
-        public ShoppingBasketDto RemoveProduct(ShoppingBasketDto basket, ProductDto product)
-        {
-
-            basket.Products.Remove(product);
-            return basket;
-        }
-
-        public ShoppingBasketDto ApplyGiftVoucer(ShoppingBasketDto basket, GiftVoucherDto giftVoucher)
-        {
-            basket.GiftVouchers.Add(giftVoucher);
-
-            return basket;
-        }
-
-        public ShoppingBasketDto RemoveGiftVoucher(ShoppingBasketDto basket, GiftVoucherDto giftVoucher)
-        {
-            basket.GiftVouchers.Remove(giftVoucher);
-
-            return basket;
-        }
-
-        public ShoppingBasketDto AddOfferVoucher(ShoppingBasketDto basket, OfferVoucherDto offerVoucher)
-        {
-            basket.OfferVoucher = offerVoucher;
-
-            return basket;
-        }
-
-        public ShoppingBasketDto RemoveOfferVoucher(ShoppingBasketDto basket)
-        {
-            basket.OfferVoucher = null;
-
-            return basket;
-        }
     }
 }

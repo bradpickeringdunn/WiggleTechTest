@@ -11,15 +11,5 @@ namespace Wiggle.Domain.ShoppingBasket
     public interface IShoppingBasketProducts
     {
         ShoppingBasketDto AddProduct(ShoppingBasketDto basket, ProductDto product);
-
-        ShoppingBasketDto RemoveProduct(ShoppingBasketDto basket, ProductDto product);
-
-        ShoppingBasketDto ApplyGiftVoucer(ShoppingBasketDto basket, GiftVoucherDto giftVoucher);
-
-        ShoppingBasketDto RemoveGiftVoucher(ShoppingBasketDto basket, GiftVoucherDto giftVoucher);
-
-        ShoppingBasketDto AddOfferVoucher(ShoppingBasketDto basket, OfferVoucherDto offerVoucher);
-
-        ShoppingBasketDto RemoveOfferVoucher(ShoppingBasketDto basket);
     }
 }

@@ -1,17 +1,17 @@
-﻿using Backbone.ErrorHandling;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wiggle.Domain.Models.ShoppingBasket;
+﻿using Wiggle.Domain.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules.ShoppingBaskets
 {
-    public class ShoppingBasketContentsRules
+    /// <summary>
+    /// Contails rules associated with offer vouchers for the discounting of a baskets contense.
+    /// </summary>
+    public class ShoppingBasketOfferVoucherRules
     {
         private ShoppingBasketDto Basket {get;set;}
 
+        /// <summary>
+        /// Apply the rules for offer voucher.
+        /// </summary>
         public ShoppingBasketDto ApplyOfferVoucher(ShoppingBasketDto basket)
         {
             this.Basket = basket;

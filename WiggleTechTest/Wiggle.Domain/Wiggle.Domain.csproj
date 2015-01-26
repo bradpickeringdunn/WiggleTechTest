@@ -44,7 +44,7 @@
     <Compile Include="PurchaseRules\Common\OfferVoucherThreasholdRule.cs" />
     <Compile Include="PurchaseRules\IOfferVoucherRules.cs" />
     <Compile Include="PurchaseRules\OfferVoucherRules.cs" />
-    <Compile Include="PurchaseRules\ShoppingBasket\ShoppingBasketContentsOfferVoucherRules.cs" />
+    <Compile Include="PurchaseRules\ShoppingBasket\ShoppingBasketOfferVoucherRules.cs" />
     <Compile Include="ShoppingBasket\IShoppingBasketProducts.cs" />
     <Compile Include="PurchaseRules\Products\ProductOfferVoucherRules.cs" />
     <Compile Include="ShoppingBasket\DiscountCalculator.cs" />

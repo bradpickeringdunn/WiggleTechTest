@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wiggle.Domain.Models.ShoppingBasket;
-using Wiggle.Domain.PurchaseRules;
 
 namespace Wiggle.Domain
 {
+    /// <summary>
+    /// Extensions applied to instances of ShoppingBasketDto
+    /// </summary>
     public static class ShoppingBasketExtension
     {
+        /// <summary>
+        /// Calculates the total cost of products.  Subtracts any gif voucchers and any discounts applied to the basket.
+        /// </summary>
         public static void CalculateTotal(this ShoppingBasketDto basket)
         {
             basket.Total = 0;
