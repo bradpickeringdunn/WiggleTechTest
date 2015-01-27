@@ -53,7 +53,7 @@
     <Compile Include="Products\ProductCategoryEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ShoppingBasket\ShoppingBasket.cs" />
+    <Compile Include="ShoppingBasket\ShoppingBasketDto.cs" />
     <Compile Include="Products\ProductDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
