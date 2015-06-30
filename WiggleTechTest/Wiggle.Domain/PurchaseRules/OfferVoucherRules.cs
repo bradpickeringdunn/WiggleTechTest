@@ -1,18 +1,13 @@
-﻿using Backbone.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wiggle.Domain.Models.Products;
-using Wiggle.Domain.Models.ShoppingBasket;
-
+﻿
+using Backbone.Utilities;
+using Wiggle.Service.Models.Products;
+using Wiggle.Service.Models.ShoppingBasket;
 namespace Wiggle.Domain.PurchaseRules
 {
     /// <summary>
     /// Class for the routing of offer voucher rules.
     /// </summary>
-    public class OfferVoucherRules : IOfferVoucherRules
+    public class OfferVoucherRules
     {
         private ShoppingBasketDto Basket { get; set; }
 

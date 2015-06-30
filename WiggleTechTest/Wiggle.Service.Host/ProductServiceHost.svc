@@ -1,0 +1,5 @@
+﻿<%@ ServiceHost Language="C#" 
+    Debug="true" 
+    Service="Wiggle.Service.Adapter.ProductServiceAdapter" 
+    CodeBehind="ProductServiceHost.svc.cs" 
+    Factory="Wiggle.Service.Host.WcfServiceFactory"%>

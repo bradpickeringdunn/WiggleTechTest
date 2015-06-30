@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Wiggle.Domain.Models.ShoppingBasket;
+using Wiggle.Service.Models.ShoppingBasket;
 
 namespace Wiggle.Domain
 {

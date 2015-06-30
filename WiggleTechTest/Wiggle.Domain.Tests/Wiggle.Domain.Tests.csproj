@@ -37,10 +37,11 @@
   <ItemGroup>
     <Reference Include="Backbone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\Backbone.dll</HintPath>
+      <HintPath>..\..\..\Backbone\Backbone\bin\Debug\Backbone.dll</HintPath>
     </Reference>
-    <Reference Include="FakeItEasy">
-      <HintPath>..\packages\FakeItEasy.1.25.1\lib\net40\FakeItEasy.dll</HintPath>
+    <Reference Include="FakeItEasy, Version=1.25.2.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FakeItEasy.1.25.2\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -63,20 +64,21 @@
     <Compile Include="Scenario.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Domain.Models.csproj">
+    <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Service.Models.csproj">
       <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
-      <Name>Wiggle.Domain.Models</Name>
+      <Name>Wiggle.Service.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wiggle.Domain\Wiggle.Domain.csproj">
       <Project>{cd759ab0-0d98-4c5d-84ab-69ce594e5362}</Project>
       <Name>Wiggle.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wiggle.Localization\Wiggle.Localization.csproj">
-      <Project>{dea78d16-b31f-4494-a93e-9675466f1542}</Project>
-      <Name>Wiggle.Localization</Name>
+    <ProjectReference Include="..\Wiggle.Service.Api.Contract\Wiggle.Service.Api.Contract.csproj">
+      <Project>{93598cbc-7a29-4c72-8920-2a95924c6f94}</Project>
+      <Name>Wiggle.Service.Api.Contract</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

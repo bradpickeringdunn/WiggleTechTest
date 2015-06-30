@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wiggle.Domain.Models.Products
+namespace Wiggle.Service.Models.Products
 {
     public enum OfferVoucherType
     {

@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wiggle.Domain.Models.Common;
-
-namespace Wiggle.Domain.Models.Products
+﻿
+using System.Runtime.Serialization;
+using Wiggle.Service.Models.Common;
+namespace Wiggle.Service.Models.Products
 {
+    [DataContract]
     public class GiftVoucherDto : BaseDto
     {
+        [DataMember]
         public string code { get; private set; }
-        public double Value {get;private set;}
+
+        [DataMember]
+        public decimal Value {get;private set;}
         
-        public GiftVoucherDto(string existingVoucherCode, double value)
+        public GiftVoucherDto(string existingVoucherCode, decimal value)
         {
             this.code = existingVoucherCode;
             this.Value = value;

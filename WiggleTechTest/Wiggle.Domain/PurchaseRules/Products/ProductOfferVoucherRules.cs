@@ -1,18 +1,16 @@
-﻿using Backbone.ErrorHandling;
-using System;
+﻿using System;
 using System.Linq;
-using Wiggle.Domain.Models.ShoppingBasket;
-using Wiggle.Domain.ShoppingBasket;
-using Wiggle.Domain.PurchaseRules.Products;
+using Backbone.ErrorHandling;
 using Wiggle.Domain.PurchaseRules.Common;
-using Wiggle.Localization;
+using Wiggle.Domain.ShoppingBasket;
+using Wiggle.Service.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules
 {
     /// <summary>
     /// Continas all rules related to the purchase of a product.
     /// </summary>
-    internal class ProductPurchaeRules : IProductPurchaeRules
+    internal class ProductPurchaeRules
     {
         private ShoppingBasketDto Basket { get; set; }
                      
@@ -42,15 +40,12 @@ namespace Wiggle.Domain.PurchaseRules
 
             if (product.IsNull())
             {
-                Basket.Notifications.Add(
-                    new Notification(
-                        new ContentString().GetError("Errors_NoProductMatchesVoucher").FormatLiteralArguments(Basket.OfferVoucher.Code))
-                    );
+                Basket.Notifications.Add(new Notification("Errors_NoProductMatchesVoucher"));
             }
 
             if (product.IsNotNull())
             {
-                double discount = DiscountCalculator.Calculate(product.Price, Basket.OfferVoucher.Value);
+                decimal discount = DiscountCalculator.Calculate(product.Price, Basket.OfferVoucher.Value);
                 product.Price -= discount;
             }
         }

@@ -1,27 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wiggle.Domain.Models.Products;
-using Wiggle.Domain.Models.ShoppingBasket;
 using Wiggle.Domain.PurchaseRules;
+using Wiggle.Service.Models.Products;
+using Wiggle.Service.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.ShoppingBasket
 {
     /// <summary>
     /// Governs the actions for product in a shopping basket
     /// </summary>
-    public class ShoppingBasketProducts : IShoppingBasketProducts
+    public class ShoppingBasketProducts
     {
-        private IOfferVoucherRules OfferVoucherRules{get;set;}
+        private OfferVoucherRules OfferVoucherRules{get;set;}
 
         /// <summary>
-        /// Constructo for passing dependacy
+        /// Constructor for passing dependencies
         /// </summary>
-        public ShoppingBasketProducts(IOfferVoucherRules offerVoucherRules)
+        public ShoppingBasketProducts(OfferVoucherRules offerVoucherRules)
         {
-            this.OfferVoucherRules = offerVoucherRules;
+            OfferVoucherRules = offerVoucherRules;
         }
 
         /// <summary>

@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0C62730-8CDA-42F1-85D6-A844E2065EC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wiggle.Service.Test</RootNamespace>
+    <AssemblyName>Wiggle.Service.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.25.2\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Extensions\ShoppingBasketExtensionTestFixture.cs" />
+    <Compile Include="Service References\ProductServiceHost\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ShoppingBasketService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingBasket\ShoppingBasketProductsTestFixture.cs" />
+    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Wiggle.Service.Models.Products.Results.GetProductsResult.datasource" />
+    <None Include="Properties\DataSources\Wiggle.Service.Models.ShoppingBasket.Result.CalculateBasketTotalResult.datasource" />
+    <None Include="Service References\ProductServiceHost\ProductServiceAdapter.wsdl" />
+    <None Include="Service References\ProductServiceHost\ProductServiceHost.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketServiceAdapter.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Backbone\Backbone\Backbone.csproj">
+      <Project>{d04357b6-63ac-4d8f-8af1-c985f6264569}</Project>
+      <Name>Backbone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Service.Models.csproj">
+      <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
+      <Name>Wiggle.Service.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wiggle.Domain\Wiggle.Domain.csproj">
+      <Project>{cd759ab0-0d98-4c5d-84ab-69ce594e5362}</Project>
+      <Name>Wiggle.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wiggle.Service.Api.Contract\Wiggle.Service.Api.Contract.csproj">
+      <Project>{93598cbc-7a29-4c72-8920-2a95924c6f94}</Project>
+      <Name>Wiggle.Service.Api.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wiggle.Service\Wiggle.Service.csproj">
+      <Project>{1742060c-8ac5-4421-a601-950d109461dd}</Project>
+      <Name>Wiggle.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ProductServiceHost\" />
+    <WCFMetadataStorage Include="Service References\ShoppingBasketService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductServiceHost\ProductServiceHost.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductServiceHost\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductServiceHost\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductServiceHost\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ShoppingBasketService\ShoppingBasketHost.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ShoppingBasketService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ShoppingBasketService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ShoppingBasketService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

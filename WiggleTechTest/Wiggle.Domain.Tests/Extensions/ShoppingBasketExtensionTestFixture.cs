@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Wiggle.Domain.Models.ShoppingBasket;
-using Wiggle.Domain.Models.Products;
-using System.Collections.Generic;
+using Wiggle.Service.Models.Products;
+using Wiggle.Service.Models.ShoppingBasket;
+using Backbone;
 
 namespace Wiggle.Domain.Tests.Extensions
 {

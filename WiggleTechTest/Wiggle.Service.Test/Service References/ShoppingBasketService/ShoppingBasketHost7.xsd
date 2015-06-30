@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Request" />
+  <xs:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Result" />
+  <xs:element name="CalculateBasketTotal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Request" minOccurs="0" name="request" nillable="true" type="q1:CalculateBasketTotalRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CalculateBasketTotalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Result" minOccurs="0" name="CalculateBasketTotalResult" nillable="true" type="q2:CalculateBasketTotalResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bd4bc115-5089-4e97-b2ca-055d176f1b94" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Wiggle.Services/ShoppingBasketHost.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ShoppingBasketHost.xsd" MetadataType="Schema" ID="1a216e7b-2e8b-4918-9bf8-3f2f9d5c616c" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd8" />
+    <MetadataFile FileName="ShoppingBasketHost1.xsd" MetadataType="Schema" ID="087f11b9-94f8-4848-8339-4478a420b52b" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd4" />
+    <MetadataFile FileName="ShoppingBasketHost.disco" MetadataType="Disco" ID="ba87912c-cad5-4db0-87e5-bd535a7483d3" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?disco" />
+    <MetadataFile FileName="ShoppingBasketHost2.xsd" MetadataType="Schema" ID="f53c5440-9c23-46d4-861c-5dae507d4aa8" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd7" />
+    <MetadataFile FileName="ShoppingBasketHost3.xsd" MetadataType="Schema" ID="b2ac7f76-7f0a-446b-8b57-7de8fea4b67b" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd2" />
+    <MetadataFile FileName="ShoppingBasketServiceAdapter.wsdl" MetadataType="Wsdl" ID="4256eb4f-a4d5-40d2-b952-d44556636367" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?wsdl" />
+    <MetadataFile FileName="ShoppingBasketHost4.xsd" MetadataType="Schema" ID="ebd4125e-2528-47ab-93f5-1188479398c1" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd0" />
+    <MetadataFile FileName="ShoppingBasketHost5.xsd" MetadataType="Schema" ID="09d9588a-cc8c-4c9c-9690-4e83dcb945d0" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd5" />
+    <MetadataFile FileName="ShoppingBasketHost6.xsd" MetadataType="Schema" ID="3053987d-5278-4594-aff5-3305eaaf5c50" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd3" />
+    <MetadataFile FileName="ShoppingBasketHost7.xsd" MetadataType="Schema" ID="a0de8596-fd81-4c4f-b43d-c115ff686b79" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd1" />
+    <MetadataFile FileName="ShoppingBasketHost8.xsd" MetadataType="Schema" ID="ccfe65ec-9475-400f-b4a7-5bdcf690f612" SourceId="1" SourceUrl="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

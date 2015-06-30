@@ -1,14 +1,12 @@
-﻿using Backbone.ErrorHandling;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wiggle.Domain.Models.Common;
-using Wiggle.Domain.Models.Products;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Backbone.ErrorHandling;
+using Wiggle.Service.Models.Common;
+using Wiggle.Service.Models.Products;
 
-namespace Wiggle.Domain.Models.ShoppingBasket
+namespace Wiggle.Service.Models.ShoppingBasket
 {
+    [DataContract]
     public class ShoppingBasketDto : BaseDto
     {
         public ShoppingBasketDto()
@@ -18,16 +16,34 @@ namespace Wiggle.Domain.Models.ShoppingBasket
             GiftVouchers = new List<GiftVoucherDto>();
         }
 
+        [DataMember]
         public List<ProductDto> Products { get; set; }
 
+        [DataMember]
         public NotificationCollection Notifications { get; set; }
 
+        [DataMember]
         public List<GiftVoucherDto> GiftVouchers { get; set; }
 
+        [DataMember]
         public OfferVoucherDto OfferVoucher { get; set; }
 
-        public double Total { get; set; }
+        [DataMember]
+        public decimal Total { get; set; }
 
-        public double? AppliedDiscount { get; set; }
+        [DataMember]
+        public decimal? AppliedDiscount { get; set; }
+
+        public decimal GetCostOfProducts()
+        {
+            var total = 0m;
+
+            Products.ForEach((product) =>
+            {
+                total += product.Price;
+            });
+
+            return total;
+        }
     }
 }

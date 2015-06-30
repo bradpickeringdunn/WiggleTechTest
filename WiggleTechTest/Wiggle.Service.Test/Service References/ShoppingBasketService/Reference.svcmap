@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c9839284-f9d0-44f1-8404-0f11dfc89388" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:56328/ShoppingBasketHost.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ShoppingBasketHost.xsd" MetadataType="Schema" ID="d5afa2f4-ec29-4eac-b443-b4da5d307e82" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd8" />
+    <MetadataFile FileName="ShoppingBasketHost1.xsd" MetadataType="Schema" ID="0d360766-03b4-4848-a714-94212957f2e7" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd7" />
+    <MetadataFile FileName="ShoppingBasketHost2.xsd" MetadataType="Schema" ID="9bf72e93-8040-4f06-b051-028d9a869c2f" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd6" />
+    <MetadataFile FileName="ShoppingBasketServiceAdapter.wsdl" MetadataType="Wsdl" ID="52951ac2-8fd7-463a-a3db-b0f885ad8782" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?wsdl" />
+    <MetadataFile FileName="ShoppingBasketHost3.xsd" MetadataType="Schema" ID="95102ef3-05b2-444f-a321-2b7a88240531" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd4" />
+    <MetadataFile FileName="ShoppingBasketHost4.xsd" MetadataType="Schema" ID="5b3668b5-51e0-46c8-aa0a-26c7c1666acc" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd3" />
+    <MetadataFile FileName="ShoppingBasketHost5.xsd" MetadataType="Schema" ID="95376e2c-f763-450a-86fe-8cc2538caaf6" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd2" />
+    <MetadataFile FileName="ShoppingBasketHost6.xsd" MetadataType="Schema" ID="9ff29b93-2e0d-40f8-b46f-769794fad5af" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd5" />
+    <MetadataFile FileName="ShoppingBasketHost7.xsd" MetadataType="Schema" ID="9edcbde7-e79a-4b9a-8a4f-0e1633f6315d" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd0" />
+    <MetadataFile FileName="ShoppingBasketHost8.xsd" MetadataType="Schema" ID="ababe0fa-4783-4340-8d10-b40c25292d60" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd1" />
+    <MetadataFile FileName="ShoppingBasketHost.disco" MetadataType="Disco" ID="44446ad4-f7dd-4c8b-bba0-f88f602750fc" SourceId="1" SourceUrl="http://localhost:56328/ShoppingBasketHost.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

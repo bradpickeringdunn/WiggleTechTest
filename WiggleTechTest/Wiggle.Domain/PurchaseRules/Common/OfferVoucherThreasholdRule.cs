@@ -1,20 +1,15 @@
-﻿using Backbone.ErrorHandling;
-using Backbone.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wiggle.Domain.Models.Products;
-using Wiggle.Domain.Models.ShoppingBasket;
-using Wiggle.Localization;
+using Backbone.Utilities;
+using Wiggle.Service.Models.Products;
+using Wiggle.Service.Models.ShoppingBasket;
 
 namespace Wiggle.Domain.PurchaseRules.Common
 {
     //TODO: move to database
-    internal class OfferVoucherThreasholdRule : IOfferVoucherThreasholdRule
+    internal class OfferVoucherThreasholdRule
     {
-        private IEnumerable<ProductCategoryEnum> ExcludedProducts = new List<ProductCategoryEnum>()
+        private IList<ProductCategoryEnum> ExcludedProducts = new List<ProductCategoryEnum>()
         {
             ProductCategoryEnum.GiftVoucher
         };
@@ -43,14 +38,14 @@ namespace Wiggle.Domain.PurchaseRules.Common
 
             if (tempBasket.Total < Basket.OfferVoucher.Threashold)
             {
-                double difference = Basket.OfferVoucher.Threashold - tempBasket.Total;
-                double extraNeeded = 0.01 + difference;
+                decimal difference = Basket.OfferVoucher.Threashold - tempBasket.Total;
+                decimal extraNeeded = decimal.Parse("0.01") + difference;
 
 
-                Basket.Notifications.Add(
-                    new Notification(
-                   new ContentString().GetError("Errors_TotalNotMatchThreashold")
-                       .FormatLiteralArguments(Basket.OfferVoucher.Code, Math.Round(extraNeeded, 2), Basket.OfferVoucher.Value)));
+                //Basket.Notifications.Add(
+                //    new Notification(
+                //   new ContentString().GetError("Errors_TotalNotMatchThreashold")
+                //       .FormatLiteralArguments(Basket.OfferVoucher.Code, Math.Round(extraNeeded, 2), Basket.OfferVoucher.Value)));
             }
         }
 

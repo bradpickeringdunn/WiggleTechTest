@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Wiggle.Services/ShoppingBasketHost.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket" />
+  <xs:complexType name="CalculateBasketTotalRequest">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket" minOccurs="0" name="Basket" nillable="true" type="q1:ShoppingBasketDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CalculateBasketTotalRequest" nillable="true" type="tns:CalculateBasketTotalRequest" />
+</xs:schema>
