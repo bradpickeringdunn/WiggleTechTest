@@ -30,19 +30,17 @@ namespace Wiggle.Service
             Guardian.ArgumentNotNull(request.Basket, "request.Basket");
             Guardian.ArgumentNotNull(request.Basket.Products, "request.Basket.Products");
 
-            var result = new CalculateBasketTotalResult();
-          
             var basket = request.Basket;
+            var result = new CalculateBasketTotalResult();
 
-            var basketTotal = basket.GetCostOfProducts();
-            //var total = CalculateBasketTotal(basket, validOffer);
-
+            result.Total = basket.GetCostOfProducts();
+            
             if (!basket.Products.Any())
             {
-                Notifications.Add("This basket is empty.");
+                result.Notifications.Add("This basket is empty.");
             }
 
-            if (basket.OfferVoucher.IsNotNull())
+            if (basket.OfferVoucher.IsNotNull() && !result.Notifications.HasErrors)
             {
                 result = new ValidateOfferVoucher().ApplyOfferVoucher(basket);
             }
@@ -53,25 +51,10 @@ namespace Wiggle.Service
                 {
                     result.Total -= giftVoucher.Value;
                 }
-            }
-            
+            }          
+
             return result;
         }
-
-        private decimal CalculateBasketTotal(Models.ShoppingBasket.ShoppingBasketDto basket, bool validOffer)
-        {
-            decimal total = 0.0m;
-
-            foreach (var product in basket.Products)
-            {
-                total += product.Price;
-            }
-
-            return total;
-
-        }
-
-        
 
         public void Dispose()
         {

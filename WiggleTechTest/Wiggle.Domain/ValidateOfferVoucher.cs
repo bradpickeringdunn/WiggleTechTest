@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Backbone.ErrorHandling;
-using Wiggle.Domain.ShoppingBasket;
 using Wiggle.Service.Models.Products;
 using Wiggle.Service.Models.ShoppingBasket;
 using Wiggle.Service.Models.ShoppingBasket.Result;

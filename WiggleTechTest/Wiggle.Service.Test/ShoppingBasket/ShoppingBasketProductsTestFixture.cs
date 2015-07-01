@@ -13,9 +13,8 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
     [TestClass]
     public class ShoppingBasketProducts
     {
-
         [TestMethod]
-        public void Scenario1()
+        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_65_15()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -37,7 +36,10 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
                         Price = 54.65m
                     }
                 },
-                OfferVoucher = new OfferVoucherDto("XXX-XXX", 5.00m, 0, ProductCategoryEnum.Clothing, OfferVoucherType.ShoppingBasket)
+                GiftVouchers = new List<GiftVoucherDto>()
+                {
+                    new GiftVoucherDto("XXX-XXX", 5m)
+                }
             };
 
             var request = new CalculateBasketTotalRequest()
@@ -52,7 +54,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         }
 
         [TestMethod]
-        public void Scenario2()
+        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_51_With_No_HeadGear_Offer_Applied()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -76,7 +78,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
                         Category = ProductCategoryEnum.Clothing
                     }
                 },
-                OfferVoucher = new OfferVoucherDto("YYY-YYY ", 5.00m, 0, ProductCategoryEnum.Clothing, OfferVoucherType.ShoppingBasket)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, ProductCategoryEnum.Clothing, OfferVoucherType.Product)
             };
 
             var request = new CalculateBasketTotalRequest()
@@ -92,7 +94,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         }
 
         [TestMethod]
-        public void Scenario3()
+        public void Service_Ensure_ShoppingBasketService_Returns_Total_51_With_HeadGear_Offer_Applied()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -139,7 +141,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         }
 
         [TestMethod]
-        public void Scenario4()
+        public void Service_Ensure_ShoppingBasketService_Returns_Total_41_With_Offer_And_GiftVoucher_Applied()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -184,7 +186,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         }
 
         [TestMethod]
-        public void Scenario5()
+        public void Service_Ensure_ShoppingBasketService_Returns_Total_55_With_Offer_Not_Meeting_Offer_ThreashHold()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();

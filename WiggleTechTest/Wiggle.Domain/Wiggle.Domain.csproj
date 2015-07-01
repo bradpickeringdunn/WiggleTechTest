@@ -46,14 +46,7 @@
     <Compile Include="CalculateShoppingBasketTotal.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Extensions\ShoppingBasketExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseRules\Common\OfferVoucherThreasholdRule.cs" />
-    <Compile Include="PurchaseRules\OfferVoucherRules.cs" />
-    <Compile Include="PurchaseRules\ShoppingBasket\ShoppingBasketOfferVoucherRules.cs" />
-    <Compile Include="PurchaseRules\Products\ProductOfferVoucherRules.cs" />
-    <Compile Include="ShoppingBasket\DiscountCalculator.cs" />
-    <Compile Include="ShoppingBasket\ShoppingBasketProducts.cs" />
     <Compile Include="ValidateOfferVoucher.cs">
       <SubType>Code</SubType>
     </Compile>
