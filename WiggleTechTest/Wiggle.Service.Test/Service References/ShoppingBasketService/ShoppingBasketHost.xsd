@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Backbone.Services.Results" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Backbone.Services.Results" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="GenericServiceResult">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket" />
+  <xs:complexType name="CalculateBasketTotalResult">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Notifications" nillable="true" type="q1:ArrayOfanyType" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket" minOccurs="0" name="Basket" nillable="true" type="q1:ShoppingBasketDto" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="GenericServiceResult" nillable="true" type="tns:GenericServiceResult" />
+  <xs:element name="CalculateBasketTotalResult" nillable="true" type="tns:CalculateBasketTotalResult" />
 </xs:schema>

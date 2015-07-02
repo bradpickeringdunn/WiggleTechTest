@@ -5,90 +5,92 @@ using Backbone.ErrorHandling;
 using Wiggle.Service.Models.Common;
 using Wiggle.Service.Models.Products;
 using System;
+using Wiggle.Service.Models.Products.Vouchers;
 
 namespace Wiggle.Service.Models.ShoppingBasket
 {
     [DataContract]
     public class ShoppingBasketDto : BaseDto
     {
-        private decimal totalBasketCost;
-        private IList<ProductDto> products;
+        private decimal subTotal;
+        private decimal total;
 
         public ShoppingBasketDto()
         {
             Initialize();
         }
 
-        public ShoppingBasketDto(List<ProductDto> prodcuts)
-        {
-            Initialize();
-            this.products = prodcuts;
-            prodcuts.ForEach((product) =>
-            {
-                totalBasketCost += product.Price;
-            });
-        }
-
+        /// <summary>
+        /// A list of all products in a basket.
+        /// </summary>
         [DataMember]
-        public IList<ProductDto> Products
-        {
-            get
-            {
-                return products;
-            }
-        }
+        public IList<ProductDto> Products{get;set;}
 
+        /// <summary>
+        /// Contains a list of all errors and warnings about the state of a basket.
+        /// </summary>
         [DataMember]
         public NotificationCollection Notifications { get; set; }
 
+        /// <summary>
+        /// Gets and sets gift vouchers for a basket.
+        /// </summary>
         [DataMember]
-        public List<GiftVoucherDto> GiftVouchers { get; set; }
+        public IList<GiftVoucherDto> GiftVouchers { get; set; }
 
+        /// <summary>
+        /// Gets and sets an offer to be applied to the basket.
+        /// </summary>
         [DataMember]
         public OfferVoucherDto OfferVoucher { get; set; }
 
+        /// <summary>
+        /// The total of a baskets products.
+        /// </summary>
         [DataMember]
         public decimal Total
         {
             get
             {
-                return totalBasketCost;
+                total = 0m;
+
+                foreach (var product in Products)
+                {
+                    total += product.Price;
+                }
+
+                return total;
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the value of a basket with all offers and gift vouchers applied.
+        /// </summary>
+        [DataMember]
+        public decimal SubTotal
+        {
+            get
+            {
+                if (subTotal == 0)
+                {
+                    subTotal = Total;
+                }
+                return subTotal;
             }
             set
             {
-                totalBasketCost = value;
+                subTotal = value;
             }
         }
 
-        [DataMember]
-        public decimal? AppliedDiscount { get; set; }
-
         private void Initialize()
         {
-            products = new List<ProductDto>();
+            Products = new List<ProductDto>();
             Notifications = new NotificationCollection();
             GiftVouchers = new List<GiftVoucherDto>();
+            subTotal = 0m;
+            total = 0m;
         }
 
-        public void AddProduct(ProductDto product)
-        {
-            products.Add(product);
-            totalBasketCost += product.Price;
-        }
-
-        public void RemoveProduct(ProductDto product)
-        {
-            products.Remove(product);
-            totalBasketCost += product.Price;
-        }
-
-        public void UpdateProduct(ProductDto product)
-        {
-            products.Remove(product);
-            totalBasketCost -= product.Price;
-            
-            products.Add(product);
-            totalBasketCost += product.Price;
-        }
     }
 }

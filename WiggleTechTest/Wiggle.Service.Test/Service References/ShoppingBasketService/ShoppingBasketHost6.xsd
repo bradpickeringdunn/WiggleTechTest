@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products.Vouchers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products.Vouchers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Common" />
+  <xs:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products" />
   <xs:complexType name="ArrayOfGiftVoucherDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="GiftVoucherDto" nillable="true" type="tns:GiftVoucherDto" />
@@ -25,7 +26,7 @@
           <xs:element minOccurs="0" name="CanBeApplied" type="xs:boolean" />
           <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="IsApplicableTo" type="tns:OfferVoucherType" />
-          <xs:element minOccurs="0" name="ProductCatergoy" nillable="true" type="tns:ProductCategoryEnum" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products" minOccurs="0" name="ProductCatergoy" nillable="true" type="q3:ProductCategoryEnum" />
           <xs:element minOccurs="0" name="Threashold" type="xs:decimal" />
           <xs:element minOccurs="0" name="Value" type="xs:decimal" />
         </xs:sequence>
@@ -40,32 +41,4 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="OfferVoucherType" nillable="true" type="tns:OfferVoucherType" />
-  <xs:simpleType name="ProductCategoryEnum">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="HeadGear" />
-      <xs:enumeration value="Clothing" />
-      <xs:enumeration value="GiftVoucher" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ProductCategoryEnum" nillable="true" type="tns:ProductCategoryEnum" />
-  <xs:complexType name="ArrayOfProductDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDto" nillable="true" type="tns:ProductDto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfProductDto" nillable="true" type="tns:ArrayOfProductDto" />
-  <xs:complexType name="ProductDto">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Common" base="q3:BaseDto">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Category" type="tns:ProductCategoryEnum" />
-          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="OfferVoucher" nillable="true" type="tns:OfferVoucherDto" />
-          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ProductDto" nillable="true" type="tns:ProductDto" />
 </xs:schema>

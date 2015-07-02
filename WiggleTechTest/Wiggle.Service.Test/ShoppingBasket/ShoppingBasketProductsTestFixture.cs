@@ -4,9 +4,9 @@ using Backbone.Repository;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wiggle.Service.Models.Products;
+using Wiggle.Service.Models.Products.Vouchers;
 using Wiggle.Service.Models.ShoppingBasket;
 using Wiggle.Service.Models.ShoppingBasket.Request;
-using System.Linq;
 
 namespace Wiggle.Domain.Tests.ShoppingBasket
 {
@@ -14,7 +14,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
     public class ShoppingBasketProducts
     {
         [TestMethod]
-        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_65_15()
+        public void Scenario_1_Ensure_ShoppingBasketService_Returns_Total_65_15()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -29,8 +29,8 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
                 }
             };
 
-            basket.AddProduct(new ProductDto(1, 10.50m) { Name = "Hat" });
-            basket.AddProduct(new ProductDto(1, 54.65m) { Name = "Jumper" });
+            basket.Products.Add(new ProductDto(1, 10.50m, "Hat",ProductCategoryEnum.Clothing));
+            basket.Products.Add(new ProductDto(1, 54.65m, "Jumper", ProductCategoryEnum.Clothing));
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -39,12 +39,13 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var result = service.CalculateBasketTotal(request);
 
-            Assert.AreEqual(result.Total, 60.15m);
+            Assert.AreEqual(result.Basket.SubTotal, 60.15m);
+            Assert.IsFalse(result.Basket.Notifications.HasErrors);
 
         }
 
         [TestMethod]
-        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_51_With_No_HeadGear_Offer_Applied()
+        public void Scenario_2_Ensure_ShoppingBasketService_Returns_Total_51_With_No_HeadGear_Offer_Applied()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -53,11 +54,11 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, ProductCategoryEnum.HeadGear, OfferVoucherType.Product)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, OfferVoucherType.Product, ProductCategoryEnum.HeadGear)
             };
 
-            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(1, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
+            basket.Products.Add(new ProductDto(1, 25.00m,"Hat", ProductCategoryEnum.Clothing));
+            basket.Products.Add(new ProductDto(1, 26.00m, "Jumper", ProductCategoryEnum.Clothing ));
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -68,13 +69,13 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var expectedErrorMessage = "There are no products in your basket applicable to voucher Voucher YYY-YYY .";
 
-            Assert.AreEqual(result.Total, 51.00m);
-            Assert.IsTrue(result.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.AreEqual(result.Basket.SubTotal, 51.00m);
+            Assert.IsTrue(result.Basket.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
-        public void Service_Ensure_ShoppingBasketService_Returns_Total_51_With_HeadGear_Offer_Applied()
+        public void Scenario_3_Ensure_ShoppingBasketService_Returns_Total_51_With_HeadGear_Offer_Applied()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -83,12 +84,12 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, ProductCategoryEnum.HeadGear, OfferVoucherType.Product)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, OfferVoucherType.Product, ProductCategoryEnum.HeadGear)
             };
 
-            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(2, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(3, 3.50m) { Name = "Head Light ", Category = ProductCategoryEnum.HeadGear });
+            basket.Products.Add(new ProductDto(1, 25.00m, "Hat", ProductCategoryEnum.Clothing));
+            basket.Products.Add(new ProductDto(2, 26.00m, "Jumper", ProductCategoryEnum.Clothing));
+            basket.Products.Add(new ProductDto(3, 3.50m, "Head Light ", ProductCategoryEnum.HeadGear));
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -97,13 +98,13 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var result = service.CalculateBasketTotal(request);
 
-            Assert.AreEqual(result.Total, 51.00m);
-            Assert.IsFalse(result.Notifications.HasErrors);
+            Assert.AreEqual(result.Basket.SubTotal, 51.00m);
+            Assert.IsFalse(result.Basket.Notifications.HasErrors);
 
         }
 
         [TestMethod]
-        public void Service_Ensure_ShoppingBasketService_Returns_Total_41_With_Offer_And_GiftVoucher_Applied()
+        public void Scenario_4_Ensure_ShoppingBasketService_Returns_Total_41_With_Offer_And_GiftVoucher_Applied()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -112,15 +113,15 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, null, OfferVoucherType.ShoppingBasket),
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, OfferVoucherType.ShoppingBasket),
                 GiftVouchers = new List<GiftVoucherDto>()
                 {
                     new GiftVoucherDto("XXX-XXX",5m)
                 }
             };
 
-            basket.AddProduct(new ProductDto(1, 25.00m){Name = "Hat",Category = ProductCategoryEnum.Clothing});
-            basket.AddProduct(new ProductDto(2, 26.00m){Name = "Jumper",Category = ProductCategoryEnum.Clothing});
+            basket.Products.Add(new ProductDto(1, 25.00m, "Hat",ProductCategoryEnum.Clothing));
+            basket.Products.Add(new ProductDto(2, 26.00m, "Jumper",ProductCategoryEnum.Clothing));
             
             var request = new CalculateBasketTotalRequest()
             {
@@ -129,13 +130,13 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var result = service.CalculateBasketTotal(request);
 
-            Assert.AreEqual(result.Total, 41.00m);
-            Assert.IsFalse(result.Notifications.HasErrors);
+            Assert.AreEqual(result.Basket.SubTotal, 41.00m);
+            Assert.IsFalse(result.Basket.Notifications.HasErrors);
 
         }
 
         [TestMethod]
-        public void Service_Ensure_ShoppingBasketService_Returns_Total_55_With_Offer_Not_Meeting_Offer_ThreashHold()
+        public void Scenario_5_Service_Ensure_ShoppingBasketService_Returns_Total_55_With_Offer_Not_Meeting_Offer_ThreashHold()
         {
             var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
@@ -144,11 +145,11 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, null, OfferVoucherType.ShoppingBasket)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, OfferVoucherType.ShoppingBasket)
             };
 
-            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(2, 30.00m) { Name = "Gift Voucher", Category = ProductCategoryEnum.GiftVoucher });
+            basket.Products.Add(new ProductDto(1, 25.00m, "Hat", ProductCategoryEnum.Clothing ));
+            basket.Products.Add(new ProductDto(2, 30.00m, "Gift Voucher", ProductCategoryEnum.GiftVoucher ));
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -159,9 +160,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var expectedErrorMessage = "You have not reached the spend threshold for voucher YYY-YYY. Spend another £25.01 to receive £5.00 discount from your basket total.";
 
-            Assert.AreEqual(result.Total, 55.00m);
-            Assert.IsTrue(result.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.AreEqual(result.Basket.SubTotal, 55.00m);
+            Assert.IsTrue(result.Basket.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
@@ -174,7 +175,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, null, OfferVoucherType.ShoppingBasket)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, OfferVoucherType.ShoppingBasket)
             };
 
             var request = new CalculateBasketTotalRequest()
@@ -186,9 +187,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var expectedErrorMessage = "This basket is empty.";
 
-            Assert.AreEqual(result.Total, 0m);
-            Assert.IsTrue(result.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.AreEqual(result.Basket.SubTotal, 0m);
+            Assert.IsTrue(result.Basket.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
 
         }
 
@@ -202,12 +203,12 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, ProductCategoryEnum.HeadGear, OfferVoucherType.Product)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, OfferVoucherType.Product, ProductCategoryEnum.HeadGear)
             };
 
-            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(1, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(3, 30m) { Name = "", Category = ProductCategoryEnum.GiftVoucher });
+            basket.Products.Add(new ProductDto(1, 25.00m, "Hat",ProductCategoryEnum.Clothing ));
+            basket.Products.Add(new ProductDto(1, 26.00m, "Jumper", ProductCategoryEnum.Clothing ));
+            basket.Products.Add(new ProductDto(3, 30m, "Shirt", ProductCategoryEnum.GiftVoucher ));
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -218,9 +219,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var expectedErrorMessage = "There are no products in your basket applicable to voucher Voucher YYY-YYY .";
 
-            Assert.AreEqual(result.Total, 81.00m);
-            Assert.IsTrue(result.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.AreEqual(result.Basket.SubTotal, 81.00m);
+            Assert.IsTrue(result.Basket.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
@@ -239,9 +240,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
                 }
             };
 
-            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(1, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
-            basket.AddProduct(new ProductDto(3, 30m) { Name = "", Category = ProductCategoryEnum.GiftVoucher });
+            basket.Products.Add(new ProductDto(1, 25.00m, "Hat", ProductCategoryEnum.Clothing ));
+            basket.Products.Add(new ProductDto(1, 26.00m, "Jumper", ProductCategoryEnum.Clothing ));
+            basket.Products.Add(new ProductDto(3, 30m, "Shirt", ProductCategoryEnum.GiftVoucher ));
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -249,9 +250,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
             };
 
             var result = service.CalculateBasketTotal(request);
-                        
-            Assert.AreEqual(result.Total, 51.00m);
-            Assert.IsFalse(result.Notifications.HasErrors);
+
+            Assert.AreEqual(result.Basket.SubTotal, 51.00m);
+            Assert.IsFalse(result.Basket.Notifications.HasErrors);
         }
     }
 }

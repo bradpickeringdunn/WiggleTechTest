@@ -1,7 +1,8 @@
 ﻿
 using System.Runtime.Serialization;
 using Wiggle.Service.Models.Common;
-namespace Wiggle.Service.Models.Products
+
+namespace Wiggle.Service.Models.Products.Vouchers
 {
     [DataContract]
     public class GiftVoucherDto : BaseDto

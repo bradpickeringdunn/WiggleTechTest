@@ -1,37 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Backbone.ErrorHandling;
 using Wiggle.Service.Models.Products;
+using Wiggle.Service.Models.Products.Vouchers;
 using Wiggle.Service.Models.ShoppingBasket;
-using Wiggle.Service.Models.ShoppingBasket.Result;
 
 namespace Wiggle.Domain
 {
-    public class ValidateOfferVoucher
+    public class ShoppingBasketOffer
     {
-        IList<OfferVoucherDto> offerVouchers;
-        
-        public ValidateOfferVoucher()
+        private IList<OfferVoucherDto> offerVouchers;
+
+        public ShoppingBasketOffer()
         {
             offerVouchers = LoadMockVouchers();
         }
 
-        public decimal CalculateVoucherTotal(decimal shoppingBasketTotal, OfferVoucherDto offer)
-        {
-            var discount = shoppingBasketTotal - offer.Value;
+        private bool OfferApplied { get; set; }
 
-            if (discount < offer.Threashold)
+        public ShoppingBasketDto ApplyOfferVoucher(ShoppingBasketDto basket)
+        {
+            basket = ValidateOffForBasket(basket);
+
+            if (!basket.Notifications.HasErrors && basket.OfferVoucher.IsApplicableTo == OfferVoucherType.ShoppingBasket)
             {
-                discount = shoppingBasketTotal;
+                basket.SubTotal = basket.SubTotal - basket.OfferVoucher.Value;
+                OfferApplied = true;
             }
 
-            return shoppingBasketTotal - discount;
+            if (!basket.Notifications.HasErrors && basket.OfferVoucher.IsApplicableTo == OfferVoucherType.Product && !OfferApplied)
+            {
+                basket.SubTotal = ApplyOfferToProducts(basket.Products, basket.OfferVoucher, basket.Total);
+            }
+
+            if (!OfferApplied && !basket.Notifications.HasErrors)
+            {
+                basket.Notifications.Add("There are no products in your basket applicable to voucher Voucher {0} .".FormatLiteralArguments(basket.OfferVoucher.Code));
+            }
+
+            return basket;
         }
 
-        public ShoppingBasketDto ValidateSpendThreashHold(ShoppingBasketDto basket)
+        private decimal ApplyOfferToProducts(IList<ProductDto> products, OfferVoucherDto offerVoucher, decimal basketTotalCost)
+        {
+            var offerApplied = false;
+            var updatedTotalCost = 0m;
+
+            foreach (var product in products)
+            {
+                if (product.Category == offerVoucher.ProductCatergoy && !offerApplied)
+                {
+                    OfferApplied = true;
+                    var productPrice = product.Price;
+                    productPrice -= offerVoucher.Value;
+                    productPrice = productPrice >= 0 ? productPrice : 0m;
+                    updatedTotalCost += productPrice;
+                }
+                else
+                {
+                    updatedTotalCost += product.Price;
+                }
+            }
+
+            if (updatedTotalCost < offerVoucher.Threashold)
+            {
+                updatedTotalCost = offerVoucher.Threashold;
+            }
+
+            return updatedTotalCost;
+        }
+        
+        public ShoppingBasketDto ValidateOffForBasket(ShoppingBasketDto basket)
         {
             var notifications = new NotificationCollection();
             var totalProductValue = 0.00m;
@@ -44,10 +83,10 @@ namespace Wiggle.Domain
                 }
             }
 
-            if (totalProductValue < basket.Total)
-            {
-                basket.Total -= totalProductValue;
-            }
+            //if (totalProductValue < basket.Total)
+            //{
+            //    totalProductValue = basket.Total - totalProductValue;
+            //}
 
             if (totalProductValue < basket.OfferVoucher.Threashold)
             {
@@ -57,56 +96,21 @@ namespace Wiggle.Domain
                         .FormatLiteralArguments(basket.OfferVoucher.Code, additionalSpend));
 
                 basket.Notifications = notifications;
-                basket.Total += totalProductValue;
+                totalProductValue = basket.Total;
             }
+
+            basket.SubTotal = totalProductValue;
 
             return basket;
         }
 
-        public NotificationCollection ValidateOffer(ShoppingBasketDto basket)
-        {
-            var notifications = new NotificationCollection();
-            OfferVoucherDto offer = null;
-            
-            if (offerVouchers.Any(v => v.Code == basket.OfferVoucher.Code))
-            {
-                offer = offerVouchers.FirstOrDefault(v => v.Code == basket.OfferVoucher.Code && v.IsApplicableTo == basket.OfferVoucher.IsApplicableTo);
-            }
-            else
-            {
-                notifications.Add("The offer voucher is not valid");
-            }
-
-            if (!notifications.HasErrors)
-            {
-                var offerAppliesToBasket = false;
-
-                if (offer.IsApplicableTo == OfferVoucherType.Product)
-                {
-                    offerAppliesToBasket = basket.Products.Any(p => p.Category == offer.ProductCatergoy);
-                }
-
-                if (offer.IsApplicableTo == OfferVoucherType.ShoppingBasket)
-                {
-                    offerAppliesToBasket = true;
-                }
-
-                if (!offerAppliesToBasket)
-                {
-                    notifications.Add("There are no products in your basket applicable to voucher Voucher {0}.".FormatLiteralArguments(offer.Code));
-                }
-            }
-
-            return notifications;
-        }
-
-        public IList<OfferVoucherDto> LoadMockVouchers()
+        private IList<OfferVoucherDto> LoadMockVouchers()
         {
             return new List<OfferVoucherDto>()
             {
-                new OfferVoucherDto("XXX-XXX", 5.00m, 0.00m,null, OfferVoucherType.ShoppingBasket),
-                new OfferVoucherDto("YYY-YYY", 5m, 50m, ProductCategoryEnum.HeadGear, OfferVoucherType.Product),
-                new OfferVoucherDto("YYY-YYY", 5m, 50m, null, OfferVoucherType.ShoppingBasket)
+                new OfferVoucherDto("XXX-XXX", 5.00m, 0.00m,OfferVoucherType.ShoppingBasket),
+                new OfferVoucherDto("YYY-YYY", 5m, 50m, OfferVoucherType.Product, ProductCategoryEnum.HeadGear),
+                new OfferVoucherDto("YYY-YYY", 5m, 50m, OfferVoucherType.ShoppingBasket)
             };
         }
     }

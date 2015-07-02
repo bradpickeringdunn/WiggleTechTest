@@ -7,10 +7,10 @@
       <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Request" />
       <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket" />
       <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Common" />
-      <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products" />
+      <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products.Vouchers" />
       <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Result" />
-      <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Backbone.Services.Results" />
+      <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products" />
+      <xsd:import schemaLocation="http://localhost:56328/ShoppingBasketHost.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Result" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IShoppingBasketServiceContract_CalculateBasketTotal_InputMessage">

@@ -41,13 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseDto.cs" />
-    <Compile Include="Products\GirftVoucherDto.cs">
+    <Compile Include="Vouchers\GirftVoucherDto.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Products\OfferVoucher.cs">
+    <Compile Include="Vouchers\OfferVoucher.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Products\OfferVoucherType.cs" />
+    <Compile Include="Vouchers\OfferVoucherType.cs" />
     <Compile Include="Products\ProductCategoryEnum.cs">
       <SubType>Code</SubType>
     </Compile>

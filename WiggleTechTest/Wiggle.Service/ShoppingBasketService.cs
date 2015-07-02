@@ -4,9 +4,7 @@ using Backbone.ErrorHandling;
 using Backbone.Logging;
 using Backbone.Repository;
 using Backbone.Utilities;
-using Wiggle.Domain;
 using Wiggle.Service.Api.Contract;
-using Wiggle.Service.Models.Products;
 using Wiggle.Service.Models.ShoppingBasket.Request;
 using Wiggle.Service.Models.ShoppingBasket.Result;
 
@@ -31,28 +29,35 @@ namespace Wiggle.Service
             Guardian.ArgumentNotNull(request.Basket.Products, "request.Basket.Products");
 
             var basket = request.Basket;
-            var result = new CalculateBasketTotalResult();
-            result.Total = basket.Total;
 
             if (!basket.Products.Any())
             {
-                result.Notifications.Add("This basket is empty.");
+                basket.Notifications.Add("This basket is empty.");
             }
 
-            if (basket.OfferVoucher.IsNotNull() && !result.Notifications.HasErrors)
+            if (basket.OfferVoucher.IsNotNull() && !basket.Notifications.HasErrors)
             {
-                result = new CalculateShoppingBasketTotal().ApplyOfferVoucher(basket);
+                var shoppingBasketOffer = new Domain.ShoppingBasketOffer();
+                basket = shoppingBasketOffer.ValidateOffForBasket(basket);
+
+                if (!basket.Notifications.HasErrors)
+                {
+                    basket = shoppingBasketOffer.ApplyOfferVoucher(basket);
+                }
             }
 
             if (basket.GiftVouchers.IsNotNull() && basket.GiftVouchers.Any())
             {
                 foreach (var giftVoucher in basket.GiftVouchers)
                 {
-                    result.Total -= giftVoucher.Value;
+                    basket.SubTotal -= giftVoucher.Value;
                 }
-            }          
+            }
 
-            return result;
+            return new CalculateBasketTotalResult()
+            {
+                Basket = basket
+            };
         }
 
         public void Dispose()

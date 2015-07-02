@@ -63,21 +63,17 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ShoppingBasketDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.GenericServiceResult))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.CalculateBasketTotalResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.CalculateBasketTotalRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherType))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
     public partial class ShoppingBasketDto : Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> AppliedDiscountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto[] GiftVouchersField;
@@ -92,20 +88,10 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
         private Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto[] ProductsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal TotalField;
+        private decimal SubTotalField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> AppliedDiscount {
-            get {
-                return this.AppliedDiscountField;
-            }
-            set {
-                if ((this.AppliedDiscountField.Equals(value) != true)) {
-                    this.AppliedDiscountField = value;
-                    this.RaisePropertyChanged("AppliedDiscount");
-                }
-            }
-        }
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto[] GiftVouchers {
@@ -160,6 +146,19 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal SubTotal {
+            get {
+                return this.SubTotalField;
+            }
+            set {
+                if ((this.SubTotalField.Equals(value) != true)) {
+                    this.SubTotalField = value;
+                    this.RaisePropertyChanged("SubTotal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public decimal Total {
             get {
                 return this.TotalField;
@@ -177,9 +176,9 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Common")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherDto))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ShoppingBasketDto))]
     public partial class BaseDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -240,7 +239,62 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GiftVoucherDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products")]
+    [System.SerializableAttribute()]
+    public partial class ProductDto : Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PriceField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GiftVoucherDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products.Vouchers")]
     [System.SerializableAttribute()]
     public partial class GiftVoucherDto : Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto {
         
@@ -279,7 +333,7 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OfferVoucherDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OfferVoucherDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products.Vouchers")]
     [System.SerializableAttribute()]
     public partial class OfferVoucherDto : Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto {
         
@@ -382,113 +436,16 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductDto", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CalculateBasketTotalResult", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Resu" +
+        "lt")]
     [System.SerializableAttribute()]
-    public partial class ProductDto : Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherDto OfferVoucherField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal PriceField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string Category {
-            get {
-                return this.CategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
-                    this.CategoryField = value;
-                    this.RaisePropertyChanged("Category");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherDto OfferVoucher {
-            get {
-                return this.OfferVoucherField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OfferVoucherField, value) != true)) {
-                    this.OfferVoucherField = value;
-                    this.RaisePropertyChanged("OfferVoucher");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Price {
-            get {
-                return this.PriceField;
-            }
-            set {
-                if ((this.PriceField.Equals(value) != true)) {
-                    this.PriceField = value;
-                    this.RaisePropertyChanged("Price");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GenericServiceResult", Namespace="http://schemas.datacontract.org/2004/07/Backbone.Services.Results")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.CalculateBasketTotalResult))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.BaseDto))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.CalculateBasketTotalRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.GiftVoucherDto))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherDto))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.OfferVoucherType))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ProductDto))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wiggle.Client.Intergration.Test.ShoppingBasketService.ShoppingBasketDto))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
-    public partial class GenericServiceResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CalculateBasketTotalResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private object[] NotificationsField;
+        private Wiggle.Client.Intergration.Test.ShoppingBasketService.ShoppingBasketDto BasketField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -501,14 +458,14 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public object[] Notifications {
+        public Wiggle.Client.Intergration.Test.ShoppingBasketService.ShoppingBasketDto Basket {
             get {
-                return this.NotificationsField;
+                return this.BasketField;
             }
             set {
-                if ((object.ReferenceEquals(this.NotificationsField, value) != true)) {
-                    this.NotificationsField = value;
-                    this.RaisePropertyChanged("Notifications");
+                if ((object.ReferenceEquals(this.BasketField, value) != true)) {
+                    this.BasketField = value;
+                    this.RaisePropertyChanged("Basket");
                 }
             }
         }
@@ -523,32 +480,8 @@ namespace Wiggle.Client.Intergration.Test.ShoppingBasketService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CalculateBasketTotalResult", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.ShoppingBasket.Resu" +
-        "lt")]
-    [System.SerializableAttribute()]
-    public partial class CalculateBasketTotalResult : Wiggle.Client.Intergration.Test.ShoppingBasketService.GenericServiceResult {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal TotalField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Total {
-            get {
-                return this.TotalField;
-            }
-            set {
-                if ((this.TotalField.Equals(value) != true)) {
-                    this.TotalField = value;
-                    this.RaisePropertyChanged("Total");
-                }
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OfferVoucherType", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OfferVoucherType", Namespace="http://schemas.datacontract.org/2004/07/Wiggle.Service.Models.Products.Vouchers")]
     public enum OfferVoucherType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]

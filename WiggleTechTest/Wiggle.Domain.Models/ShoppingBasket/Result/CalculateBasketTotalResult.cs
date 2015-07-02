@@ -9,9 +9,9 @@ using Backbone.Services.Results;
 namespace Wiggle.Service.Models.ShoppingBasket.Result
 {
     [DataContract]
-    public class CalculateBasketTotalResult : GenericServiceResult
+    public class CalculateBasketTotalResult
     {
         [DataMember]
-        public decimal Total { get; set; }
+        public ShoppingBasketDto Basket { get; set; }
     }
 }
