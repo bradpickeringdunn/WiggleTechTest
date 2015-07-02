@@ -19,66 +19,23 @@ namespace Wiggle.Domain
             offerVouchers = LoadMockVouchers();
         }
 
-        public CalculateBasketTotalResult ApplyOfferVoucher(ShoppingBasketDto basket)
+        public decimal CalculateVoucherTotal(decimal shoppingBasketTotal, OfferVoucherDto offer)
         {
-            basket.Notifications = ValidateOffer(basket);
-            var result = new CalculateBasketTotalResult();
-            
-            if (!basket.Notifications.HasErrors)
+            var discount = shoppingBasketTotal - offer.Value;
+
+            if (discount < offer.Threashold)
             {
-                var totalValueOfProducts = basket.GetCostOfProducts();
-                var offerApplied = false;
-
-                basket = ValidateSpendThreashHold(basket);
-
-                if (!basket.Notifications.HasErrors)
-                {
-                    if (basket.OfferVoucher.IsApplicableTo == OfferVoucherType.ShoppingBasket)
-                    {
-                        basket.Total = totalValueOfProducts - basket.OfferVoucher.Value;
-                        offerApplied = true;
-                    }
-
-                    if (basket.OfferVoucher.IsApplicableTo == OfferVoucherType.Product && !offerApplied)
-                    {
-                        foreach (var product in basket.Products)
-                        {
-                            if (product.Category == basket.OfferVoucher.ProductCatergoy && !offerApplied)
-                            {
-                                offerApplied = true;
-                                product.Price -= basket.OfferVoucher.Value;
-                                product.Price = product.Price >= 0 ? product.Price : 0m;
-
-                                if (basket.Total < basket.OfferVoucher.Threashold)
-                                {
-                                    basket.Total = basket.OfferVoucher.Threashold;
-                                }
-                            }
-                        }
-
-                        basket.Total = basket.GetCostOfProducts();
-                    }
-                }
-
-                result.Notifications = basket.Notifications;
-                result.Total = basket.Total;
-
-            }
-            else
-            {
-                result.Notifications = basket.Notifications;
-                result.Total = basket.GetCostOfProducts();
+                discount = shoppingBasketTotal;
             }
 
-            return result;
+            return shoppingBasketTotal - discount;
         }
 
-        private ShoppingBasketDto ValidateSpendThreashHold(ShoppingBasketDto basket)
+        public ShoppingBasketDto ValidateSpendThreashHold(ShoppingBasketDto basket)
         {
             var notifications = new NotificationCollection();
             var totalProductValue = 0.00m;
-            basket.Total = basket.GetCostOfProducts();
-
+            
             foreach (var product in basket.Products)
             {
                 if (product.Category != ProductCategoryEnum.GiftVoucher)
@@ -95,7 +52,7 @@ namespace Wiggle.Domain
             if (totalProductValue < basket.OfferVoucher.Threashold)
             {
                 var additionalSpend = 0.00m;
-                additionalSpend = basket.OfferVoucher.Threashold - (totalProductValue + 0.01m);
+                additionalSpend = (basket.OfferVoucher.Threashold - totalProductValue) + 0.01m;
                 notifications.Add("You have not reached the spend threshold for voucher {0}. Spend another £{1} to receive £5.00 discount from your basket total."
                         .FormatLiteralArguments(basket.OfferVoucher.Code, additionalSpend));
 
@@ -106,12 +63,11 @@ namespace Wiggle.Domain
             return basket;
         }
 
-        private NotificationCollection ValidateOffer(ShoppingBasketDto basket)
+        public NotificationCollection ValidateOffer(ShoppingBasketDto basket)
         {
             var notifications = new NotificationCollection();
             OfferVoucherDto offer = null;
-            var totalCostOfProducts = basket.GetCostOfProducts();
-
+            
             if (offerVouchers.Any(v => v.Code == basket.OfferVoucher.Code))
             {
                 offer = offerVouchers.FirstOrDefault(v => v.Code == basket.OfferVoucher.Code && v.IsApplicableTo == basket.OfferVoucher.IsApplicableTo);
@@ -137,14 +93,14 @@ namespace Wiggle.Domain
 
                 if (!offerAppliesToBasket)
                 {
-                    notifications.Add("There are no products in your basket applicable to voucher Voucher {0} .".FormatLiteralArguments(offer.Code));
+                    notifications.Add("There are no products in your basket applicable to voucher Voucher {0}.".FormatLiteralArguments(offer.Code));
                 }
             }
 
             return notifications;
         }
-        
-        private IList<OfferVoucherDto> LoadMockVouchers()
+
+        public IList<OfferVoucherDto> LoadMockVouchers()
         {
             return new List<OfferVoucherDto>()
             {

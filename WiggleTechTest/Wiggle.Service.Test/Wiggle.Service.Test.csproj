@@ -56,19 +56,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Extensions\ShoppingBasketExtensionTestFixture.cs" />
-    <Compile Include="Service References\ProductServiceHost\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ShoppingBasketService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ShoppingBasket\ShoppingBasketProductsTestFixture.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,28 +72,6 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Wiggle.Service.Models.Products.Results.GetProductsResult.datasource" />
     <None Include="Properties\DataSources\Wiggle.Service.Models.ShoppingBasket.Result.CalculateBasketTotalResult.datasource" />
-    <None Include="Service References\ProductServiceHost\ProductServiceAdapter.wsdl" />
-    <None Include="Service References\ProductServiceHost\ProductServiceHost.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost51.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ShoppingBasketService\ShoppingBasketHost.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -153,23 +124,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ProductServiceHost\" />
     <WCFMetadataStorage Include="Service References\ShoppingBasketService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ProductServiceHost\ProductServiceHost.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ProductServiceHost\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ProductServiceHost\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ProductServiceHost\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ShoppingBasketService\ShoppingBasketHost.disco" />

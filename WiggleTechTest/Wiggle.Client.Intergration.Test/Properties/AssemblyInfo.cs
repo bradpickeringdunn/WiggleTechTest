@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wiggle.Client.Test")]
+[assembly: AssemblyTitle("Wiggle.Client.Intergration.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Wiggle.Client.Test")]
+[assembly: AssemblyProduct("Wiggle.Client.Intergration.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d870f8c2-0e52-47e0-b32c-6c49cb505e3e")]
+[assembly: Guid("281a9552-c426-4f32-8d95-8070d08eb8a0")]
 
 // Version information for an assembly consists of the following four values:
 //

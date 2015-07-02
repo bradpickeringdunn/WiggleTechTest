@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB}</ProjectGuid>
+    <ProjectGuid>{457274F6-A215-475F-887C-589020A4E88B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wiggle.Client.Test</RootNamespace>
-    <AssemblyName>Wiggle.Client.Test</AssemblyName>
+    <RootNamespace>Wiggle.Client.Intergration.Test</RootNamespace>
+    <AssemblyName>Wiggle.Client.Intergration.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FakeItEasy">
-      <HintPath>..\packages\FakeItEasy.1.25.2\lib\net40\FakeItEasy.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -56,19 +53,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ShoppingBasketService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ShoppingBasketScenarioTestFixture.cs" />
+    <Compile Include="IntergrationTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="Properties\DataSources\Wiggle.Service.Models.Products.Results.GetProductsResult.datasource" />
-    <None Include="Properties\DataSources\Wiggle.Service.Models.ShoppingBasket.Result.CalculateBasketTotalResult.datasource" />
     <None Include="Service References\ShoppingBasketService\ShoppingBasketHost.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -97,27 +94,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ShoppingBasketService\ShoppingBasketServiceAdapter.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Backbone\Backbone\Backbone.csproj">
-      <Project>{d04357b6-63ac-4d8f-8af1-c985f6264569}</Project>
-      <Name>Backbone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Service.Models.csproj">
-      <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
-      <Name>Wiggle.Service.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wiggle.Service.Adapter\Wiggle.Service.Adapter.csproj">
-      <Project>{fb2e7722-deac-425e-9698-4f4fb472ba8d}</Project>
-      <Name>Wiggle.Service.Adapter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wiggle.Service.Api.Contract\Wiggle.Service.Api.Contract.csproj">
-      <Project>{93598cbc-7a29-4c72-8920-2a95924c6f94}</Project>
-      <Name>Wiggle.Service.Api.Contract</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <None Include="Service References\ShoppingBasketService\Wiggle.Client.Intergration.Test.ShoppingBasketService.CalculateBasketTotalResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ShoppingBasketService\" />
@@ -137,6 +116,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

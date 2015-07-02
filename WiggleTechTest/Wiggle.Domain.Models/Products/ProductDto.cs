@@ -6,15 +6,12 @@ namespace Wiggle.Service.Models.Products
     [DataContract]
     public class ProductDto : BaseDto
     {
-        public ProductDto()
+        public ProductDto(int id, decimal price)
         {
+            Price = price;
+            Id = id;
         }
-
-        public ProductDto(OfferVoucherDto offerVoucher)
-        {
-            this.OfferVoucher = offerVoucher;
-        }
-
+        
         [DataMember]
         public string Name { get; set; }
 

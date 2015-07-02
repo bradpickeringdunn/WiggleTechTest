@@ -23,24 +23,14 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                Products = new System.Collections.Generic.List<ProductDto>()
-                {
-                    new ProductDto()
-                    {
-                        Name = "Hat",
-                        Price = 10.50m
-                    },
-                    new ProductDto()
-                    {
-                        Name = "Jumper",
-                        Price = 54.65m
-                    }
-                },
                 GiftVouchers = new List<GiftVoucherDto>()
                 {
                     new GiftVoucherDto("XXX-XXX", 5m)
                 }
             };
+
+            basket.AddProduct(new ProductDto(1, 10.50m) { Name = "Hat" });
+            basket.AddProduct(new ProductDto(1, 54.65m) { Name = "Jumper" });
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -63,23 +53,11 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                Products = new System.Collections.Generic.List<ProductDto>()
-                {
-                    new ProductDto()
-                    {
-                        Name = "Hat",
-                        Price = 25.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    },
-                    new ProductDto()
-                    {
-                        Name = "Jumper",
-                        Price = 26.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    }
-                },
-                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, ProductCategoryEnum.Clothing, OfferVoucherType.Product)
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, ProductCategoryEnum.HeadGear, OfferVoucherType.Product)
             };
+
+            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(1, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -88,9 +66,11 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var result = service.CalculateBasketTotal(request);
 
+            var expectedErrorMessage = "There are no products in your basket applicable to voucher Voucher YYY-YYY .";
+
             Assert.AreEqual(result.Total, 51.00m);
             Assert.IsTrue(result.Notifications.HasErrors);
-            
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
@@ -103,30 +83,12 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                Products = new System.Collections.Generic.List<ProductDto>()
-                {
-                    new ProductDto()
-                    {
-                        Name = "Hat",
-                        Price = 25.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    },
-                    new ProductDto()
-                    {
-                        Name = "Jumper",
-                        Price = 26.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    },
-                    new ProductDto()
-                    {
-                        Name = "Head Light ",
-                        Price = 3.50m,
-                        Category = ProductCategoryEnum.HeadGear
-                    }
-                },
-
                 OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, ProductCategoryEnum.HeadGear, OfferVoucherType.Product)
             };
+
+            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(2, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(3, 3.50m) { Name = "Head Light ", Category = ProductCategoryEnum.HeadGear });
 
             var request = new CalculateBasketTotalRequest()
             {
@@ -150,22 +112,6 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                Products = new System.Collections.Generic.List<ProductDto>()
-                {
-                    new ProductDto()
-                    {
-                        Name = "Hat",
-                        Price = 25.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    },
-                    new ProductDto()
-                    {
-                        Name = "Jumper",
-                        Price = 26.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    }
-                },
-
                 OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, null, OfferVoucherType.ShoppingBasket),
                 GiftVouchers = new List<GiftVoucherDto>()
                 {
@@ -173,6 +119,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
                 }
             };
 
+            basket.AddProduct(new ProductDto(1, 25.00m){Name = "Hat",Category = ProductCategoryEnum.Clothing});
+            basket.AddProduct(new ProductDto(2, 26.00m){Name = "Jumper",Category = ProductCategoryEnum.Clothing});
+            
             var request = new CalculateBasketTotalRequest()
             {
                 Basket = basket
@@ -195,22 +144,36 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var basket = new ShoppingBasketDto()
             {
-                Products = new System.Collections.Generic.List<ProductDto>()
-                {
-                    new ProductDto()
-                    {
-                        Name = "Hat",
-                        Price = 25.00m,
-                        Category = ProductCategoryEnum.Clothing
-                    },
-                    new ProductDto()
-                    {
-                        Name = "Gift Voucher",
-                        Price = 30.00m,
-                        Category = ProductCategoryEnum.GiftVoucher
-                    }
-                },
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, null, OfferVoucherType.ShoppingBasket)
+            };
 
+            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(2, 30.00m) { Name = "Gift Voucher", Category = ProductCategoryEnum.GiftVoucher });
+
+            var request = new CalculateBasketTotalRequest()
+            {
+                Basket = basket
+            };
+          
+            var result = service.CalculateBasketTotal(request);
+
+            var expectedErrorMessage = "You have not reached the spend threshold for voucher YYY-YYY. Spend another £25.01 to receive £5.00 discount from your basket total.";
+
+            Assert.AreEqual(result.Total, 55.00m);
+            Assert.IsTrue(result.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+        }
+
+        [TestMethod]
+        public void Service_Ensure_ShoppingBasketService_Returns_Error_If_No_Product_In_Basket()
+        {
+            var repo = A.Fake<IRepository>();
+            var logger = A.Fake<ILogger>();
+
+            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+
+            var basket = new ShoppingBasketDto()
+            {
                 OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 50m, null, OfferVoucherType.ShoppingBasket)
             };
 
@@ -221,9 +184,74 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             var result = service.CalculateBasketTotal(request);
 
-            Assert.AreEqual(result.Total, 55.00m);
-            Assert.IsTrue(result.Notifications.HasErrors);
+            var expectedErrorMessage = "This basket is empty.";
 
+            Assert.AreEqual(result.Total, 0m);
+            Assert.IsTrue(result.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+
+        }
+
+        [TestMethod]
+        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_81_With_No_HeadGear_Offer_Applied()
+        {
+            var repo = A.Fake<IRepository>();
+            var logger = A.Fake<ILogger>();
+
+            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+
+            var basket = new ShoppingBasketDto()
+            {
+                OfferVoucher = new OfferVoucherDto("YYY-YYY", 5.00m, 0, ProductCategoryEnum.HeadGear, OfferVoucherType.Product)
+            };
+
+            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(1, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(3, 30m) { Name = "", Category = ProductCategoryEnum.GiftVoucher });
+
+            var request = new CalculateBasketTotalRequest()
+            {
+                Basket = basket
+            };
+
+            var result = service.CalculateBasketTotal(request);
+
+            var expectedErrorMessage = "There are no products in your basket applicable to voucher Voucher YYY-YYY .";
+
+            Assert.AreEqual(result.Total, 81.00m);
+            Assert.IsTrue(result.Notifications.HasErrors);
+            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+        }
+
+        [TestMethod]
+        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_51_With_30_GiftVoucher_Applied()
+        {
+            var repo = A.Fake<IRepository>();
+            var logger = A.Fake<ILogger>();
+
+            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+
+            var basket = new ShoppingBasketDto()
+            {
+                GiftVouchers = new List<GiftVoucherDto>()
+                {
+                    new GiftVoucherDto("XXX-XXX",30m)
+                }
+            };
+
+            basket.AddProduct(new ProductDto(1, 25.00m) { Name = "Hat", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(1, 26.00m) { Name = "Jumper", Category = ProductCategoryEnum.Clothing });
+            basket.AddProduct(new ProductDto(3, 30m) { Name = "", Category = ProductCategoryEnum.GiftVoucher });
+
+            var request = new CalculateBasketTotalRequest()
+            {
+                Basket = basket
+            };
+
+            var result = service.CalculateBasketTotal(request);
+                        
+            Assert.AreEqual(result.Total, 51.00m);
+            Assert.IsFalse(result.Notifications.HasErrors);
         }
     }
 }

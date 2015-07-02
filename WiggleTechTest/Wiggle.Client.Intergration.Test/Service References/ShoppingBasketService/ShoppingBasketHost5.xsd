@@ -41,11 +41,7 @@
   </xs:simpleType>
   <xs:element name="OfferVoucherType" nillable="true" type="tns:OfferVoucherType" />
   <xs:simpleType name="ProductCategoryEnum">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="HeadGear" />
-      <xs:enumeration value="Clothing" />
-      <xs:enumeration value="GiftVoucher" />
-    </xs:restriction>
+    <xs:restriction base="xs:string" />
   </xs:simpleType>
   <xs:element name="ProductCategoryEnum" nillable="true" type="tns:ProductCategoryEnum" />
   <xs:complexType name="ArrayOfProductDto">

@@ -34,13 +34,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Repository", "Wiggle
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{040E164A-6DD8-4623-AA77-DAE5B8A0C090}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{F328C0CC-3A70-4610-995E-E2691515DD3F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiggle.Client.Test", "Wiggle.Client.Test\Wiggle.Client.Test.csproj", "{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C948C4AD-C80B-4194-B829-EA660C7182D2} = {C948C4AD-C80B-4194-B829-EA660C7182D2}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,10 +84,6 @@ Global
 		{950542AE-95DD-430E-9D88-2897AF6CC53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{950542AE-95DD-430E-9D88-2897AF6CC53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{950542AE-95DD-430E-9D88-2897AF6CC53E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,7 +100,6 @@ Global
 		{1742060C-8AC5-4421-A601-950D109461DD} = {A47A8D69-81FC-461B-8774-68328AF42334}
 		{F0C62730-8CDA-42F1-85D6-A844E2065EC3} = {A47A8D69-81FC-461B-8774-68328AF42334}
 		{950542AE-95DD-430E-9D88-2897AF6CC53E} = {A47A8D69-81FC-461B-8774-68328AF42334}
-		{C3C2EAFF-D9B2-44B6-A461-8AECB4F75DDB} = {F328C0CC-3A70-4610-995E-E2691515DD3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35

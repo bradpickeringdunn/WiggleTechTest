@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculateShoppingBasketTotal.cs">
+    <Compile Include="ShoppingBasket\CalculateShoppingBasketTotal.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidateOfferVoucher.cs">
+    <Compile Include="Voucher\ValidateOfferVoucher.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -32,9 +32,8 @@ namespace Wiggle.Service
 
             var basket = request.Basket;
             var result = new CalculateBasketTotalResult();
+            result.Total = basket.Total;
 
-            result.Total = basket.GetCostOfProducts();
-            
             if (!basket.Products.Any())
             {
                 result.Notifications.Add("This basket is empty.");
@@ -42,7 +41,7 @@ namespace Wiggle.Service
 
             if (basket.OfferVoucher.IsNotNull() && !result.Notifications.HasErrors)
             {
-                result = new ValidateOfferVoucher().ApplyOfferVoucher(basket);
+                result = new CalculateShoppingBasketTotal().ApplyOfferVoucher(basket);
             }
 
             if (basket.GiftVouchers.IsNotNull() && basket.GiftVouchers.Any())

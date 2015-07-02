@@ -75,7 +75,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ProductServiceHost.svc" />
     <Content Include="ShoppingBasketHost.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

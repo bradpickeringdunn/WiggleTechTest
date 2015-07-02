@@ -42,13 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOfferVoucherRules.cs" />
-    <Compile Include="IOfferVoucherThreasholdRule.cs" />
-    <Compile Include="IProductPurchaeRules.cs" />
-    <Compile Include="IProductServiceContract.cs" />
-    <Compile Include="IRepo.cs" />
-    <Compile Include="IShoppingBasketOfferVoucherRules.cs" />
-    <Compile Include="IShoppingBasketProducts.cs" />
     <Compile Include="IShoppingBasketServiceContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

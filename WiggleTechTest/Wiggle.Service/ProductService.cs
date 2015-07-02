@@ -23,23 +23,5 @@ namespace Wiggle.Service
             Logger = logger;
             Repository = repository;
         }
-
-        public GetProductsResult GetProducts()
-        {
-            return Execute<GetProductsResult>(() =>
-            {
-                return new GetProductsResult()
-                {
-                    Product = new List<ProductDto>()
-                    {
-                        new ProductDto(){},
-                        new ProductDto(){},
-                        new ProductDto(){},
-                        new ProductDto(){},
-                        new ProductDto(){}
-                    }
-                };
-            });
-        }
     }
 }

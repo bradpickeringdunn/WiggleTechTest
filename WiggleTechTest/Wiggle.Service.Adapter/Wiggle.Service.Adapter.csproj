@@ -42,16 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseServiceCall.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="OfferVoucherThreasholdRule.cs" />
-    <Compile Include="ProductPurchaeRules.cs" />
-    <Compile Include="ProductServiceAdapter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ShoppingBasketOfferVoucherRules.cs" />
-    <Compile Include="ShoppingBasketProducts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingBasketServiceAdapter.cs">
       <SubType>Code</SubType>

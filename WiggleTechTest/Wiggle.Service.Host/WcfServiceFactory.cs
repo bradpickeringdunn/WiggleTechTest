@@ -17,13 +17,8 @@ namespace Wiggle.Service.Host
 			// register all your components with the container here
              container.RegisterType<IShoppingBasketServiceContract, ShoppingBasketServiceAdapter>();
              container.RegisterType<IRepository, Repo>();
-             container.RegisterType<IOfferVoucherThreasholdRule, OfferVoucherThreasholdRule>();
-             container.RegisterType<IProductPurchaeRules, ProductPurchaeRules>();
-             container.RegisterType<IShoppingBasketOfferVoucherRules, ShoppingBasketOfferVoucherRules>();
-             container.RegisterType<IShoppingBasketProducts, ShoppingBasketProducts>();
              container.RegisterType<IShoppingBasketServiceContract, ShoppingBasketServiceAdapter>();
              container.RegisterType<ILogger, DebugLogger>();
-             container.RegisterType<IProductServiceContract, ProductServiceAdapter>();
             
         }
     }    
