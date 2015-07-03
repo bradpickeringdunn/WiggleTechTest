@@ -4,6 +4,7 @@ using Backbone.ErrorHandling;
 using Backbone.Logging;
 using Backbone.Repository;
 using Backbone.Utilities;
+using Wiggle.Domain;
 using Wiggle.Service.Api.Contract;
 using Wiggle.Service.Models.ShoppingBasket.Request;
 using Wiggle.Service.Models.ShoppingBasket.Result;
@@ -16,10 +17,9 @@ namespace Wiggle.Service
         public ILogger Logger { get; set; }
         public NotificationCollection Notifications = new NotificationCollection();
 
-        public ShoppingBasketService(IRepository repo, ILogger logger)
+        public ShoppingBasketService(ILogger logger)
         {
             Logger = logger;
-            Repository = Repository;
         }
         
         public CalculateBasketTotalResult CalculateBasketTotal(CalculateBasketTotalRequest request)
@@ -37,7 +37,7 @@ namespace Wiggle.Service
 
             if (basket.OfferVoucher.IsNotNull() && !basket.Notifications.HasErrors)
             {
-                var shoppingBasketOffer = new Domain.ShoppingBasketOffer();
+                var shoppingBasketOffer = new ShoppingBasketOffer();
                 basket = shoppingBasketOffer.ValidateOffForBasket(basket);
 
                 if (!basket.Notifications.HasErrors)
@@ -48,10 +48,7 @@ namespace Wiggle.Service
 
             if (basket.GiftVouchers.IsNotNull() && basket.GiftVouchers.Any())
             {
-                foreach (var giftVoucher in basket.GiftVouchers)
-                {
-                    basket.SubTotal -= giftVoucher.Value;
-                }
+                basket = new CalculateBasket().ApplyGiftVouchers(basket);
             }
 
             return new CalculateBasketTotalResult()

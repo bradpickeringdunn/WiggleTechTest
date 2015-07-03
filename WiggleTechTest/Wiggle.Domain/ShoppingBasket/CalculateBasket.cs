@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wiggle.Service.Models.Products;
 using Wiggle.Service.Models.Products.Vouchers;
 using Wiggle.Service.Models.ShoppingBasket;
-using Wiggle.Service.Models.ShoppingBasket.Result;
 
 namespace Wiggle.Domain
 {
-    public class CalculateBasketTotal
+    public class CalculateBasket
     {
         private bool OfferApplied { get; set; }
 
@@ -32,6 +28,16 @@ namespace Wiggle.Domain
             if (!OfferApplied && !basket.Notifications.HasErrors)
             {
                 basket.Notifications.Add("There are no products in your basket applicable to voucher Voucher {0} .".FormatLiteralArguments(basket.OfferVoucher.Code));
+            }
+
+            return basket;
+        }
+
+        public ShoppingBasketDto ApplyGiftVouchers(ShoppingBasketDto basket)
+        {
+            foreach (var giftVoucher in basket.GiftVouchers)
+            {
+                basket.SubTotal -= giftVoucher.Value;
             }
 
             return basket;

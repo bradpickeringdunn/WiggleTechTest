@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Backbone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Backbone\Backbone.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -100,10 +104,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Backbone\Backbone\Backbone.csproj">
-      <Project>{d04357b6-63ac-4d8f-8af1-c985f6264569}</Project>
-      <Name>Backbone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Service.Models.csproj">
       <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
       <Name>Wiggle.Service.Models</Name>

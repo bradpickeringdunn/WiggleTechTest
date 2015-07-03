@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Backbone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Backbone\Backbone.dll</HintPath>
+    </Reference>
+    <Reference Include="Backbone.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Backbone\Backbone.WCF.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -100,21 +108,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Backbone\Backbone.WCF\Backbone.WCF.csproj">
-      <Project>{7069d6de-bbbc-4bbf-a455-bd185b99f013}</Project>
-      <Name>Backbone.WCF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Backbone\Backbone\Backbone.csproj">
-      <Project>{d04357b6-63ac-4d8f-8af1-c985f6264569}</Project>
-      <Name>Backbone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Wiggle.Domain.Models\Wiggle.Service.Models.csproj">
       <Project>{b5e470bb-0538-43ef-b826-e6a7eb31d564}</Project>
       <Name>Wiggle.Service.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wiggle.Repository\Wiggle.Repository.csproj">
-      <Project>{950542ae-95dd-430e-9d88-2897af6cc53e}</Project>
-      <Name>Wiggle.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wiggle.Service.Adapter\Wiggle.Service.Adapter.csproj">
       <Project>{fb2e7722-deac-425e-9698-4f4fb472ba8d}</Project>

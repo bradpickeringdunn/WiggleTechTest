@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using Backbone.Logging;
 using Backbone.Repository;
 using Wiggle.Service.Api.Contract;
@@ -14,21 +9,30 @@ namespace Wiggle.Service.Adapter
 {
     public class ShoppingBasketServiceAdapter : IShoppingBasketServiceContract
     {
-        private IRepository Repository { get; set; }
         private ILogger Logger { get; set; }
+        IShoppingBasketServiceContract ShoppingBasketService { get; set; }
      
-        public ShoppingBasketServiceAdapter(ILogger logger, IRepository repository)
+        public ShoppingBasketServiceAdapter(ILogger logger, IShoppingBasketServiceContract shoppingBasketService)
         {
-            Repository = repository;
             Logger = logger;
+            ShoppingBasketService = shoppingBasketService;
         }
-        
+
         public CalculateBasketTotalResult CalculateBasketTotal(CalculateBasketTotalRequest request)
         {
-            using (var shoppingBasketService = new ShoppingBasketService(Repository,Logger))
+            var result = new CalculateBasketTotalResult();
+
+            try
             {
-                return shoppingBasketService.CalculateBasketTotal(request);
+                result = ShoppingBasketService.CalculateBasketTotal(request);
             }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                result.Basket.Notifications.Add("General service exception");
+            }
+
+            return result;
         }
     }
 }

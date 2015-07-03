@@ -7,6 +7,7 @@ using Wiggle.Service.Models.Products;
 using Wiggle.Service.Models.Products.Vouchers;
 using Wiggle.Service.Models.ShoppingBasket;
 using Wiggle.Service.Models.ShoppingBasket.Request;
+using System.Linq;
 
 namespace Wiggle.Domain.Tests.ShoppingBasket
 {
@@ -16,10 +17,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         [TestMethod]
         public void Scenario_1_Ensure_ShoppingBasketService_Returns_Total_65_15()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -38,8 +38,7 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
             };
 
             var result = service.CalculateBasketTotal(request);
-
-            Assert.AreEqual(result.Basket.SubTotal, 60.15m);
+             Assert.AreEqual(result.Basket.SubTotal, 60.15m);
             Assert.IsFalse(result.Basket.Notifications.HasErrors);
 
         }
@@ -47,10 +46,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         [TestMethod]
         public void Scenario_2_Ensure_ShoppingBasketService_Returns_Total_51_With_No_HeadGear_Offer_Applied()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -71,16 +69,15 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             Assert.AreEqual(result.Basket.SubTotal, 51.00m);
             Assert.IsTrue(result.Basket.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.IsTrue(result.Basket.Notifications.Notifications.First().Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
         public void Scenario_3_Ensure_ShoppingBasketService_Returns_Total_51_With_HeadGear_Offer_Applied()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -106,10 +103,9 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         [TestMethod]
         public void Scenario_4_Ensure_ShoppingBasketService_Returns_Total_41_With_Offer_And_GiftVoucher_Applied()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -136,12 +132,11 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
         }
 
         [TestMethod]
-        public void Scenario_5_Service_Ensure_ShoppingBasketService_Returns_Total_55_With_Offer_Not_Meeting_Offer_ThreashHold()
+        public void Scenario_5_Ensure_ShoppingBasketService_Returns_Total_55_With_Offer_Not_Meeting_Offer_ThreashHold()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -162,16 +157,15 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             Assert.AreEqual(result.Basket.SubTotal, 55.00m);
             Assert.IsTrue(result.Basket.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.IsTrue(result.Basket.Notifications.Notifications.First().Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
-        public void Service_Ensure_ShoppingBasketService_Returns_Error_If_No_Product_In_Basket()
+        public void Scenario_6_Ensure_ShoppingBasketService_Returns_Error_If_No_Product_In_Basket()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -189,17 +183,16 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             Assert.AreEqual(result.Basket.SubTotal, 0m);
             Assert.IsTrue(result.Basket.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.IsTrue(result.Basket.Notifications.Notifications.First().Error.ErrorMessage == expectedErrorMessage);
 
         }
 
         [TestMethod]
-        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_81_With_No_HeadGear_Offer_Applied()
+        public void Scenario_7_Ensure_ShoppingBasketService_Returns_Total_81_With_No_HeadGear_Offer_Applied()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {
@@ -221,16 +214,15 @@ namespace Wiggle.Domain.Tests.ShoppingBasket
 
             Assert.AreEqual(result.Basket.SubTotal, 81.00m);
             Assert.IsTrue(result.Basket.Notifications.HasErrors);
-            Assert.IsTrue(((Backbone.ErrorHandling.Notification)(result.Basket.Notifications.Notifications[0])).Error.ErrorMessage == expectedErrorMessage);
+            Assert.IsTrue(result.Basket.Notifications.Notifications.First().Error.ErrorMessage == expectedErrorMessage);
         }
 
         [TestMethod]
-        public void ServiceTest_Ensure_ShoppingBasketService_Returns_Total_51_With_30_GiftVoucher_Applied()
+        public void Scenario_8_Ensure_ShoppingBasketService_Returns_Total_51_With_30_GiftVoucher_Applied()
         {
-            var repo = A.Fake<IRepository>();
             var logger = A.Fake<ILogger>();
 
-            var service = new Wiggle.Service.ShoppingBasketService(repo, logger);
+            var service = new Wiggle.Service.ShoppingBasketService(logger);
 
             var basket = new ShoppingBasketDto()
             {

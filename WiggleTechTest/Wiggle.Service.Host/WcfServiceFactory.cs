@@ -1,11 +1,8 @@
-using Backbone.Repository;
+using Backbone.Logging;
 using Microsoft.Practices.Unity;
 using Unity.Wcf;
-using Unity;
-using Wiggle.Repository;
 using Wiggle.Service.Adapter;
 using Wiggle.Service.Api.Contract;
-using Backbone.Logging;
 
 namespace Wiggle.Service.Host
 {
@@ -15,10 +12,9 @@ namespace Wiggle.Service.Host
         {
 
 			// register all your components with the container here
-             container.RegisterType<IShoppingBasketServiceContract, ShoppingBasketServiceAdapter>();
-             container.RegisterType<IRepository, Repo>();
-             container.RegisterType<IShoppingBasketServiceContract, ShoppingBasketServiceAdapter>();
-             container.RegisterType<ILogger, DebugLogger>();
+            container.RegisterType<IShoppingBasketServiceContract, ShoppingBasketServiceAdapter>();
+            container.RegisterType<IShoppingBasketServiceContract, ShoppingBasketServiceAdapter>();
+            container.RegisterType<ILogger, DebugLogger>();
             
         }
     }    
